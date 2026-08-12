@@ -100,6 +100,7 @@ export const PHASE2: Challenge[] = [
       layout: "mixed",
       exit: "swim",
     },
+    sceneNote: "No início: 14 animais",
     poses: { observe: "presenting", ask: "thinking", success: "celebrating" },
     observe: {
       prompt: "Neste lugar há 10 peixes e 4 cavalos-marinhos: 14 animais ao todo.",
