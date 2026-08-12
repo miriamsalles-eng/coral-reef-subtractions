@@ -326,10 +326,12 @@ export function ChallengeScreen({
             a={challenge.numbers.a}
             b={challenge.numbers.b}
             result={challenge.numbers.result}
-            x={430}
-            y={362}
-            width={340}
+            x={NUMBERS_GROUP.operation.x}
+            y={NUMBERS_GROUP.operation.y}
+            width={NUMBERS_GROUP.operation.width}
+            fontSize={44}
           />
+
           <ImageNavButton kind="next" label="Seguir" onClick={onFinish} x={NAV.x} y={NAV.y} width={NAV.width} />
         </>
       )}
