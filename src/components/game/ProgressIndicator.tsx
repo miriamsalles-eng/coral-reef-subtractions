@@ -7,8 +7,9 @@ export function ProgressIndicator({
 }: {
   phaseLabel: string;
   sectionLabel: string;
-  current?: number;
-  total?: number;
+  current?: number | undefined;
+  total?: number | undefined;
+
 }) {
   return (
     <div
