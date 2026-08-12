@@ -54,20 +54,21 @@ export function SpeechBubble({
           <img src={BUTTONS.audio} alt="" aria-hidden="true" className="h-14 w-auto" draggable={false} />
         </button>
       </div>
-      {/* rabicho: sempre no canto do lado em que Mara está, apontando para ela */}
+      {/* rabicho: gota curta que nasce da base do balão e aponta para Mara */}
       <span
         aria-hidden="true"
         className={
           tailSide === "left"
-            ? "absolute h-7 w-7 rotate-45 border-b-4 border-l-4 border-inherit bg-bubble"
-            : "absolute h-7 w-7 rotate-45 border-b-4 border-r-4 border-inherit bg-bubble"
+            ? "absolute h-[22px] w-[22px] rotate-45 rounded-bl-[7px] border-b-4 border-l-4 border-inherit bg-bubble"
+            : "absolute h-[22px] w-[22px] rotate-45 rounded-br-[7px] border-b-4 border-r-4 border-inherit bg-bubble"
         }
         style={{
-          bottom: -14,
-          left: tailSide === "left" ? -10 : undefined,
-          right: tailSide === "right" ? -10 : undefined,
+          bottom: -11,
+          left: tailSide === "left" ? 26 : undefined,
+          right: tailSide === "right" ? 26 : undefined,
         }}
       />
+
     </div>
   );
 }

@@ -68,7 +68,19 @@ export function ChallengeScreen({
   challenge: Challenge;
   onFinish: () => void;
 }) {
-  const layout = LAYOUTS[challenge.composition];
+  const base = LAYOUTS[challenge.composition];
+  /** Fase 2: mesma estrutura, com balão mais compacto/alto e Mara um pouco menor. */
+  const layout: Layout = challenge.compact
+    ? {
+        ...base,
+        mara: { ...base.mara, height: Math.round(base.mara.height * 0.9) },
+        bubble: base.bubble
+          ? challenge.composition === "C"
+            ? { ...base.bubble, x: 262, y: 572, width: 600 }
+            : { ...base.bubble, x: base.bubble.x - 12, y: base.bubble.y - 8, width: base.bubble.width + 12 }
+          : null,
+      }
+    : base;
   const { after, clearInteractionTimers } = useInteractionTimers();
   const { speak, stop } = useNarration(challenge.id);
 
@@ -207,7 +219,12 @@ export function ChallengeScreen({
   const maraSpec = isNumbers ? NUMBERS_GROUP.mara : layout.mara;
   const bubbleSpec = isNumbers ? NUMBERS_GROUP.bubble : layout.bubble;
   const bubbleY =
-    !isNumbers && askOperation && challenge.composition === "C" ? 592 : bubbleSpec?.y;
+    !isNumbers && !challenge.compact && askOperation && challenge.composition === "C"
+      ? 592
+      : bubbleSpec?.y;
+
+  const isObserving = step === "count" || step === "observe" || step === "pause" || step === "animating";
+  const sceneNote = (isObserving && challenge.sceneNoteObserve) || challenge.sceneNote;
 
 
   return (
@@ -220,16 +237,17 @@ export function ChallengeScreen({
       />
       <PromptCard text={prompt} />
 
-      {challenge.sceneNote && (
+      {sceneNote && (
         <div
           className="animate-soft-in absolute rounded-full border-4 border-white/80 bg-prompt/92 px-5 py-1 text-center"
-          style={{ left: 450, top: 92, width: 300 }}
+          style={{ left: 420, top: 92, width: 360 }}
         >
-          <p className="font-display text-[22px] font-semibold text-prompt-foreground">
-            {challenge.sceneNote}
+          <p className="font-display text-[21px] font-semibold text-prompt-foreground">
+            {sceneNote}
           </p>
         </div>
       )}
+
 
 
 
