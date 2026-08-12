@@ -56,8 +56,10 @@ function buildItems(spec: SceneSpec): Item[] {
   const items: Item[] = [];
   const push = (i: number, x: number, y: number) => {
     const f = flat[i];
+    if (!f) return;
     items.push({ key: `${f.species}-${i}`, species: f.species, x, y, h: HEIGHT[f.species], leaving: f.leaving });
   };
+
 
   if (spec.layout === "group-and-singles") {
     const n = flat.length;
