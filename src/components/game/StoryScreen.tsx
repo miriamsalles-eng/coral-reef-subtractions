@@ -64,16 +64,17 @@ export function StoryScreen({
         </div>
       </div>
 
-      <Mara pose={pose} height={300} x={maraX} bottom={-10} />
+      <Mara pose={pose} height={370} x={maraX} bottom={-10} facing={side === "left" ? "right" : "left"} />
 
       <SpeechBubble
         text={mara}
         x={bubbleX}
         y={470}
-        width={470}
-        tail={side === "left" ? "left" : "right"}
+        width={bubbleWidth}
+        tailSide={side === "left" ? "left" : "right"}
         onSpeak={(t) => speak(t, narrationId)}
       />
+
 
       <ImageNavButton kind={buttonKind} label={buttonLabel} onClick={onNext} x={998} y={598} width={182} />
     </GameScreen>
