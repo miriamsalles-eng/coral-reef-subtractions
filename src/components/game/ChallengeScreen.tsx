@@ -48,9 +48,9 @@ const LAYOUTS: Record<Challenge["composition"], Layout> = {
  * um conjunto horizontal — OPERAÇÃO → BALÃO → MARA.
  */
 const NUMBERS_GROUP = {
-  operation: { x: 56, y: 470, width: 316 },
-  bubble: { x: 404, y: 452, width: 420, tailSide: "right" as const },
-  mara: { x: 846, height: 292, bottom: -10, facing: "left" as const },
+  operation: { x: 24, y: 470, width: 300 },
+  bubble: { x: 336, y: 452, width: 400, tailSide: "right" as const },
+  mara: { x: 744, height: 292, bottom: -10, facing: "left" as const },
 };
 
 const NAV = { x: 998, y: 598, width: 182 };
