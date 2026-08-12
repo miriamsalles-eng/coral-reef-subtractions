@@ -1,119 +1,142 @@
 import { useState } from "react";
 import { GameScreen } from "./GameScreen";
 import { Mara } from "./Mara";
+import { Operation } from "./Operation";
 import { SpeechBubble } from "./SpeechBubble";
 import { PromptCard } from "./PromptCard";
 import { ImageNavButton } from "./NavButton";
 import { AnswerOptions, type AnswerValue } from "./AnswerOptions";
+import { StaticScene, type StaticGroup } from "./StaticScene";
 import { useNarration } from "@/lib/useNarration";
 
-interface Reflection {
+interface Situation {
   prompt: string;
   mara: string;
-  options: Array<{ value: string; label: string }>;
-  /** Quando existe, há uma resposta correta; senão toda escolha é acolhida. */
-  correct?: string;
-  feedback: Record<string, string>;
-  retry?: string;
+  groups: StaticGroup[];
+  sceneNote: string;
+  operation?: { a: number; b: number; result: number };
+  options: Array<{ value: string; label: string; ariaLabel?: string }>;
+  correct: string;
+  size: "operation" | "text";
+  success: string;
+  retry: string;
 }
 
-const QUESTIONS: Reflection[] = [
+const SITUATIONS: Situation[] = [
   {
-    prompt: "Como você descobriu quantos animais ficaram?",
-    mara: "Não existe pressa. Pense em como você fez.",
+    prompt: "Qual conta mostra o que aconteceu?",
+    mara: "Veja quantos peixes havia, quais saíram e quantos ficaram.",
+    groups: [{ species: "fish-yellow", count: 8, leaving: 3 }],
+    sceneNote: "Havia 8 peixes — 3 saíram — ficaram 5",
     options: [
-      { value: "contei", label: "Contei os que ficaram" },
-      { value: "voltei", label: "Voltei contando de trás" },
-      { value: "grupo", label: "Usei o grupo de 10" },
+      { value: "8-3", label: "8 − 3 = 5", ariaLabel: "8 menos 3 é igual a 5" },
+      { value: "8+3", label: "8 + 3 = 11", ariaLabel: "8 mais 3 é igual a 11" },
+      { value: "5-3", label: "5 − 3 = 2", ariaLabel: "5 menos 3 é igual a 2" },
     ],
-    feedback: {
-      contei: "Contar quem ficou é um jeito seguro de conferir a resposta.",
-      voltei: "Voltar contando também funciona: tirar é andar para trás na contagem.",
-      grupo: "Usar o grupo de 10 ajuda muito quando há muitos animais.",
-    },
+    correct: "8-3",
+    size: "operation",
+    success: "Isso mesmo! Havia 8 peixes, 3 saíram e ficaram 5.",
+    retry: "Observe quantos peixes havia, quantos saíram e quantos ficaram.",
   },
   {
-    prompt: "O que o sinal de menos (−) mostra na conta?",
-    mara: "Lembre das cenas: os animais saíram do recife.",
-    options: [
-      { value: "retirada", label: "Que uma quantidade foi retirada" },
-      { value: "juntar", label: "Que juntamos duas quantidades" },
-      { value: "repetir", label: "Que repetimos a quantidade" },
+    prompt: "O que o número 4 mostra nessa situação?",
+    mara: "Compare a conta com a cena do recife.",
+    groups: [
+      { species: "fish-yellow", count: 5 },
+      { species: "fish-turquoise", count: 5, leaving: 2 },
+      { species: "seahorse", count: 4, leaving: 2 },
     ],
-    correct: "retirada",
-    feedback: {
-      retirada: "Isso mesmo! O sinal de menos mostra que algo foi retirado do total.",
-    },
-    retry: "Nas cenas, os animais saíram. O que acontece com o total quando alguém sai?",
+    sceneNote: "Havia 14 animais — 4 saíram — ficaram 10",
+    operation: { a: 14, b: 4, result: 10 },
+    options: [
+      { value: "havia", label: "Quantos animais havia" },
+      { value: "sairam", label: "Quantos animais saíram" },
+      { value: "ficaram", label: "Quantos animais ficaram" },
+    ],
+    correct: "sairam",
+    size: "text",
+    success: "Isso mesmo! O 4 mostra quantos animais saíram.",
+    retry: "Observe a conta e veja qual quantidade foi retirada.",
   },
 ];
 
 export function MetacognitionScreen({ onFinish }: { onFinish: () => void }) {
   const [index, setIndex] = useState(0);
-  const [chosen, setChosen] = useState<string | null>(null);
+  const [done, setDone] = useState(false);
   const [wrong, setWrong] = useState<AnswerValue[]>([]);
 
-  const q = QUESTIONS[index]!;
+  const q = SITUATIONS[index]!;
   const { speak } = useNarration(`meta-${index}`);
 
   const choose = (value: AnswerValue) => {
-    const v = String(value);
-    if (q.correct && v !== q.correct) {
-      setWrong((w) => [...w, v]);
-      return;
+    if (String(value) === q.correct) {
+      setDone(true);
+    } else {
+      setWrong((w) => [...w, value]);
     }
-    setChosen(v);
   };
 
   const next = () => {
-    if (index + 1 < QUESTIONS.length) {
+    if (index + 1 < SITUATIONS.length) {
       setIndex(index + 1);
-      setChosen(null);
+      setDone(false);
       setWrong([]);
     } else {
       onFinish();
     }
   };
 
-  const maraText = chosen
-    ? (q.feedback[chosen] ?? "Boa reflexão!")
-    : wrong.length > 0
-      ? (q.retry ?? q.mara)
-      : q.mara;
+  const maraText = done ? q.success : wrong.length > 0 ? q.retry : q.mara;
 
   return (
     <GameScreen background="reflection">
       <PromptCard text={q.prompt} />
 
-      <Mara
-        pose={chosen ? "feedback" : "thinking"}
-        height={252}
-        x={20}
-        bottom={-8}
+      <StaticScene
+        groups={q.groups}
+        x={230}
+        y={q.operation ? 90 : 110}
+        width={740}
+        height={q.operation ? 52 : 62}
+        note={q.sceneNote}
       />
 
-      <SpeechBubble
-        text={maraText}
-        x={200}
-        y={452}
-        width={400}
-        tail="left"
-        tone={chosen ? "correct" : wrong.length > 0 ? "retry" : "hint"}
-        onSpeak={(t) => speak(t, `reflexao.${index}`)}
-      />
+      {q.operation && (
+        <Operation
+          a={q.operation.a}
+          b={q.operation.b}
+          result={q.operation.result}
+          x={430}
+          y={232}
+          width={340}
+          highlight="b"
+        />
+      )}
 
       <AnswerOptions
         options={q.options}
         onChoose={choose}
         chosen={wrong}
-        correct={chosen}
-        x={190}
-        y={200}
-        width={960}
-        size="text"
+        correct={done ? q.correct : null}
+        x={200}
+        y={q.operation ? 336 : 300}
+        width={800}
+        size={q.size}
       />
 
-      {chosen && (
+      <Mara pose={done ? "feedback" : "thinking"} height={228} x={20} bottom={-8} />
+
+      <SpeechBubble
+        text={maraText}
+        x={196}
+        y={468}
+        width={420}
+        tail="left"
+        tone={done ? "correct" : wrong.length > 0 ? "retry" : "hint"}
+        onSpeak={(t) => speak(t, `reflexao.${index}`)}
+      />
+
+      {done && (
         <ImageNavButton kind="next" label="Seguir" onClick={next} x={998} y={598} width={182} />
       )}
     </GameScreen>
