@@ -84,12 +84,16 @@ export function ChallengeScreen({
     setStep("animating");
   };
 
-  const replay = () => {
+  /** Uma única repetição: limpa timers, restaura a cena, espera e anima uma vez. */
+  const replayRemovalAnimation = () => {
     clearInteractionTimers();
     stop();
     setRemoved(false);
-    setStep("animating");
-    after(500, () => setReplayKey((k) => k + 1));
+    setStep("pause");
+    after(500, () => {
+      setReplayKey((k) => k + 1);
+      setStep("animating");
+    });
   };
 
   const onRemovalFinished = () => {
