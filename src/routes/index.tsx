@@ -27,6 +27,7 @@ export const Route = createFileRoute("/")({
 
 type Stage =
   | { kind: "cover" }
+  | { kind: "intro" }
   | { kind: "tutorial" }
   | { kind: "phase1"; index: number }
   | { kind: "transition" }
@@ -42,6 +43,8 @@ function Index() {
     setStage((current) => {
       switch (current.kind) {
         case "cover":
+          return { kind: "intro" };
+        case "intro":
           return { kind: "tutorial" };
         case "tutorial":
           return { kind: "phase1", index: 0 };
