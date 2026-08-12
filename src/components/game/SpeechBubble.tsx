@@ -4,13 +4,16 @@ import { BUTTONS } from "@/data/assets";
  * Balão de fala de Mara — mediação ("como posso pensar?"),
  * nunca repetição do enunciado ("o que preciso fazer?").
  * Sempre com texto visível + botão de áudio com aria-label.
+ *
+ * `tailSide` indica de que lado do balão Mara está: o rabicho sai do canto
+ * inferior desse lado e aponta na diagonal para a personagem.
  */
 export function SpeechBubble({
   text,
   x,
   y,
   width,
-  tail = "left",
+  tailSide = "left",
   onSpeak,
   tone = "hint",
 }: {
@@ -18,7 +21,8 @@ export function SpeechBubble({
   x: number;
   y: number;
   width: number;
-  tail?: "left" | "right";
+  /** lado do balão em que Mara está */
+  tailSide?: "left" | "right";
   onSpeak: (text: string) => void;
   tone?: "hint" | "correct" | "retry";
 }) {
@@ -50,10 +54,19 @@ export function SpeechBubble({
           <img src={BUTTONS.audio} alt="" aria-hidden="true" className="h-14 w-auto" draggable={false} />
         </button>
       </div>
+      {/* rabicho: sempre no canto do lado em que Mara está, apontando para ela */}
       <span
         aria-hidden="true"
-        className="absolute -bottom-3 h-6 w-6 rotate-45 border-b-4 border-r-4 border-inherit bg-bubble"
-        style={{ left: tail === "left" ? 34 : undefined, right: tail === "right" ? 34 : undefined }}
+        className={
+          tailSide === "left"
+            ? "absolute h-7 w-7 rotate-45 border-b-4 border-l-4 border-inherit bg-bubble"
+            : "absolute h-7 w-7 rotate-45 border-b-4 border-r-4 border-inherit bg-bubble"
+        }
+        style={{
+          bottom: -14,
+          left: tailSide === "left" ? -10 : undefined,
+          right: tailSide === "right" ? -10 : undefined,
+        }}
       />
     </div>
   );
