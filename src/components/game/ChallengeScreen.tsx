@@ -15,27 +15,42 @@ import type { Challenge } from "@/data/types";
 type Step = "count" | "observe" | "pause" | "animating" | "ask" | "success" | "numbers";
 
 interface Layout {
-  mara: { x: number; height: number; bottom: number };
-  bubble: { x: number; y: number; width: number; tail: "left" | "right" } | null;
+  mara: { x: number; height: number; bottom: number; facing: "left" | "right" };
+  bubble: { x: number; y: number; width: number; tailSide: "left" | "right" } | null;
   answers: { x: number; y: number; width: number };
+  /** operação alinhada ao balão (mesma coluna) quando ambos aparecem */
+  operation: { x: number; y: number; width: number };
 }
 
 const LAYOUTS: Record<Challenge["composition"], Layout> = {
   A: {
-    mara: { x: 18, height: 248, bottom: -8 },
-    bubble: { x: 196, y: 452, width: 356, tail: "left" },
-    answers: { x: 590, y: 456, width: 560 },
+    mara: { x: 6, height: 300, bottom: -8, facing: "right" },
+    bubble: { x: 312, y: 452, width: 344, tailSide: "left" },
+    answers: { x: 676, y: 456, width: 500 },
+    operation: { x: 314, y: 352, width: 340 },
   },
   B: {
-    mara: { x: 848, height: 226, bottom: -6 },
-    bubble: { x: 512, y: 450, width: 316, tail: "right" },
-    answers: { x: 30, y: 456, width: 470 },
+    mara: { x: 856, height: 282, bottom: -6, facing: "left" },
+    bubble: { x: 498, y: 450, width: 330, tailSide: "right" },
+    answers: { x: 30, y: 456, width: 440 },
+    operation: { x: 493, y: 350, width: 340 },
   },
   C: {
-    mara: { x: 16, height: 206, bottom: -6 },
-    bubble: { x: 176, y: 566, width: 440, tail: "left" },
-    answers: { x: 210, y: 452, width: 950 },
+    mara: { x: 6, height: 258, bottom: -6, facing: "right" },
+    bubble: { x: 272, y: 566, width: 440, tailSide: "left" },
+    answers: { x: 286, y: 452, width: 874 },
+    operation: { x: 430, y: 352, width: 340 },
   },
+};
+
+/**
+ * Tela "mostrar com números": sem alternativas, os três elementos formam
+ * um conjunto horizontal — OPERAÇÃO → BALÃO → MARA.
+ */
+const NUMBERS_GROUP = {
+  operation: { x: 24, y: 470, width: 300 },
+  bubble: { x: 336, y: 452, width: 400, tailSide: "right" as const },
+  mara: { x: 744, height: 292, bottom: -10, facing: "left" as const },
 };
 
 const NAV = { x: 998, y: 598, width: 182 };
@@ -44,6 +59,7 @@ const CONTROL = {
   replay: { x: 946, y: 600, width: 234 },
   numbers: { x: 866, y: 600, width: 314 },
 };
+
 
 export function ChallengeScreen({
   challenge,
@@ -185,7 +201,14 @@ export function ChallengeScreen({
         : null;
 
   const askOperation = step === "ask" || step === "success" ? challenge.ask.operation : undefined;
-  const bubbleY = askOperation && challenge.composition === "C" ? 592 : layout.bubble?.y;
+  const isNumbers = step === "numbers" && !!challenge.numbers;
+
+  // Na etapa "mostrar com números" os três elementos formam um conjunto horizontal.
+  const maraSpec = isNumbers ? NUMBERS_GROUP.mara : layout.mara;
+  const bubbleSpec = isNumbers ? NUMBERS_GROUP.bubble : layout.bubble;
+  const bubbleY =
+    !isNumbers && askOperation && challenge.composition === "C" ? 592 : bubbleSpec?.y;
+
 
   return (
     <GameScreen background={challenge.background}>
@@ -218,15 +241,21 @@ export function ChallengeScreen({
         onFinished={onRemovalFinished}
       />
 
-      <Mara pose={pose} height={layout.mara.height} x={layout.mara.x} bottom={layout.mara.bottom} />
+      <Mara
+        pose={pose}
+        height={maraSpec.height}
+        x={maraSpec.x}
+        bottom={maraSpec.bottom}
+        facing={maraSpec.facing}
+      />
 
-      {maraText && layout.bubble && (
+      {maraText && bubbleSpec && (
         <SpeechBubble
           text={maraText}
-          x={layout.bubble.x}
-          y={bubbleY ?? layout.bubble.y}
-          width={layout.bubble.width}
-          tail={layout.bubble.tail}
+          x={bubbleSpec.x}
+          y={bubbleY ?? bubbleSpec.y}
+          width={bubbleSpec.width}
+          tailSide={bubbleSpec.tailSide}
           tone={tone}
           onSpeak={(t) => speak(t, challenge.narrationId)}
         />
@@ -237,11 +266,12 @@ export function ChallengeScreen({
           a={askOperation.a}
           b={askOperation.b}
           result={step === "success" ? challenge.ask.answer.correct : "?"}
-          x={430}
-          y={362}
-          width={340}
+          x={layout.operation.x}
+          y={layout.operation.y}
+          width={layout.operation.width}
         />
       )}
+
 
       {showAnswers && (
         <AnswerOptions
@@ -296,10 +326,12 @@ export function ChallengeScreen({
             a={challenge.numbers.a}
             b={challenge.numbers.b}
             result={challenge.numbers.result}
-            x={430}
-            y={362}
-            width={340}
+            x={NUMBERS_GROUP.operation.x}
+            y={NUMBERS_GROUP.operation.y}
+            width={NUMBERS_GROUP.operation.width}
+            fontSize={44}
           />
+
           <ImageNavButton kind="next" label="Seguir" onClick={onFinish} x={NAV.x} y={NAV.y} width={NAV.width} />
         </>
       )}

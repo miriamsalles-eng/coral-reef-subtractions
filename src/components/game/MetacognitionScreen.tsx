@@ -126,17 +126,18 @@ export function MetacognitionScreen({ onFinish }: { onFinish: () => void }) {
       />
 
 
-      <Mara pose={done ? "feedback" : "thinking"} height={228} x={20} bottom={-8} />
+      <Mara pose={done ? "feedback" : "thinking"} height={286} x={16} bottom={-8} facing="right" />
 
       <SpeechBubble
         text={maraText}
-        x={196}
+        x={320}
         y={468}
         width={420}
-        tail="left"
+        tailSide="left"
         tone={done ? "correct" : wrong.length > 0 ? "retry" : "hint"}
         onSpeak={(t) => speak(t, `reflexao.${index}`)}
       />
+
 
       {done && (
         <ImageNavButton kind="next" label="Seguir" onClick={next} x={998} y={598} width={182} />

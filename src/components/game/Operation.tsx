@@ -9,6 +9,7 @@ export function Operation({
   y,
   width,
   highlight,
+  fontSize = 48,
 }: {
   a: number;
   b: number;
@@ -17,6 +18,7 @@ export function Operation({
   y: number;
   width: number;
   highlight?: "b" | null;
+  fontSize?: number;
 }) {
   return (
     <div
@@ -24,7 +26,8 @@ export function Operation({
       style={{ left: x, top: y, width, minHeight: 78 }}
       aria-label={`${a} menos ${b} é igual a ${result}`}
     >
-      <p className="font-display font-semibold text-prompt-foreground" style={{ fontSize: 48 }}>
+      <p className="font-display font-semibold text-prompt-foreground" style={{ fontSize }}>
+
         <span>{a}</span> <span className="text-reef-coral">{MINUS}</span>{" "}
         <span className={highlight === "b" ? "rounded-xl bg-reef-sun/70 px-2" : undefined}>{b}</span>{" "}
         <span>=</span> <span>{result}</span>

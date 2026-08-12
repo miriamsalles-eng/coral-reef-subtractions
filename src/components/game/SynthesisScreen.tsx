@@ -70,17 +70,24 @@ export function SynthesisScreen({ onFinish }: { onFinish: () => void }) {
 
       <Operation a={8} b={3} result={5} x={430} y={366} width={340} />
 
-      <Mara pose={line === 0 ? "presenting1" : "celebrating"} height={244} x={20} bottom={-8} />
+      <Mara
+        pose={line === 0 ? "presenting1" : "celebrating"}
+        height={306}
+        x={16}
+        bottom={-8}
+        facing="right"
+      />
 
       <SpeechBubble
         text={LINES[line]!}
-        x={200}
+        x={266}
         y={470}
         width={430}
-        tail="left"
+        tailSide="left"
         tone="correct"
         onSpeak={(t) => speak(t, `sintese.${line}`)}
       />
+
 
       <ImageNavButton kind="next" label="Seguir" onClick={next} x={998} y={598} width={182} />
     </GameScreen>
