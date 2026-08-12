@@ -241,15 +241,21 @@ export function ChallengeScreen({
         onFinished={onRemovalFinished}
       />
 
-      <Mara pose={pose} height={layout.mara.height} x={layout.mara.x} bottom={layout.mara.bottom} />
+      <Mara
+        pose={pose}
+        height={maraSpec.height}
+        x={maraSpec.x}
+        bottom={maraSpec.bottom}
+        facing={maraSpec.facing}
+      />
 
-      {maraText && layout.bubble && (
+      {maraText && bubbleSpec && (
         <SpeechBubble
           text={maraText}
-          x={layout.bubble.x}
-          y={bubbleY ?? layout.bubble.y}
-          width={layout.bubble.width}
-          tail={layout.bubble.tail}
+          x={bubbleSpec.x}
+          y={bubbleY ?? bubbleSpec.y}
+          width={bubbleSpec.width}
+          tailSide={bubbleSpec.tailSide}
           tone={tone}
           onSpeak={(t) => speak(t, challenge.narrationId)}
         />
@@ -260,11 +266,12 @@ export function ChallengeScreen({
           a={askOperation.a}
           b={askOperation.b}
           result={step === "success" ? challenge.ask.answer.correct : "?"}
-          x={430}
-          y={362}
-          width={340}
+          x={layout.operation.x}
+          y={layout.operation.y}
+          width={layout.operation.width}
         />
       )}
+
 
       {showAnswers && (
         <AnswerOptions
