@@ -3,12 +3,17 @@ import { MARA_POSES, MARA_RATIO, type MaraPose } from "@/data/assets";
 /**
  * Mara, a tartaruga mediadora. Posição e pose variam conforme a função
  * pedagógica da tela. O PNG nunca é deformado: a largura vem da proporção.
+ *
+ * Todas as poses foram desenhadas olhando/gesticulando para a ESQUERDA.
+ * Por isso `facing="right"` apenas espelha horizontalmente o PNG, para que
+ * Mara conduza o olhar da criança até o balão, a operação ou a cena.
  */
 export function Mara({
   pose,
   height,
   x,
   bottom,
+  facing = "left",
   flip = false,
   className = "",
   style,
@@ -17,11 +22,14 @@ export function Mara({
   height: number;
   x: number;
   bottom: number;
+  /** lado para o qual Mara deve olhar (onde está o conteúdo com que interage) */
+  facing?: "left" | "right";
   flip?: boolean;
   className?: string;
   style?: React.CSSProperties;
 }) {
   const width = height * MARA_RATIO[pose];
+  const mirrored = flip || facing === "right";
   return (
     <img
       src={MARA_POSES[pose]}
@@ -33,7 +41,7 @@ export function Mara({
         bottom,
         width,
         height,
-        transform: flip ? "scaleX(-1)" : undefined,
+        transform: mirrored ? "scaleX(-1)" : undefined,
         filter: "drop-shadow(0 8px 12px rgb(0 0 0 / 0.18))",
         ...style,
       }}
