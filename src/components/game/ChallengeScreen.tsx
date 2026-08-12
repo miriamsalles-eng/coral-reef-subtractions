@@ -15,27 +15,42 @@ import type { Challenge } from "@/data/types";
 type Step = "count" | "observe" | "pause" | "animating" | "ask" | "success" | "numbers";
 
 interface Layout {
-  mara: { x: number; height: number; bottom: number };
-  bubble: { x: number; y: number; width: number; tail: "left" | "right" } | null;
+  mara: { x: number; height: number; bottom: number; facing: "left" | "right" };
+  bubble: { x: number; y: number; width: number; tailSide: "left" | "right" } | null;
   answers: { x: number; y: number; width: number };
+  /** operação alinhada ao balão (mesma coluna) quando ambos aparecem */
+  operation: { x: number; y: number; width: number };
 }
 
 const LAYOUTS: Record<Challenge["composition"], Layout> = {
   A: {
-    mara: { x: 18, height: 248, bottom: -8 },
-    bubble: { x: 196, y: 452, width: 356, tail: "left" },
-    answers: { x: 590, y: 456, width: 560 },
+    mara: { x: 6, height: 300, bottom: -8, facing: "right" },
+    bubble: { x: 312, y: 452, width: 344, tailSide: "left" },
+    answers: { x: 676, y: 456, width: 500 },
+    operation: { x: 314, y: 352, width: 340 },
   },
   B: {
-    mara: { x: 848, height: 226, bottom: -6 },
-    bubble: { x: 512, y: 450, width: 316, tail: "right" },
-    answers: { x: 30, y: 456, width: 470 },
+    mara: { x: 856, height: 282, bottom: -6, facing: "left" },
+    bubble: { x: 498, y: 450, width: 330, tailSide: "right" },
+    answers: { x: 30, y: 456, width: 440 },
+    operation: { x: 493, y: 350, width: 340 },
   },
   C: {
-    mara: { x: 16, height: 206, bottom: -6 },
-    bubble: { x: 176, y: 566, width: 440, tail: "left" },
-    answers: { x: 210, y: 452, width: 950 },
+    mara: { x: 6, height: 258, bottom: -6, facing: "right" },
+    bubble: { x: 272, y: 566, width: 440, tailSide: "left" },
+    answers: { x: 286, y: 452, width: 874 },
+    operation: { x: 430, y: 352, width: 340 },
   },
+};
+
+/**
+ * Tela "mostrar com números": sem alternativas, os três elementos formam
+ * um conjunto horizontal — OPERAÇÃO → BALÃO → MARA.
+ */
+const NUMBERS_GROUP = {
+  operation: { x: 56, y: 470, width: 316 },
+  bubble: { x: 404, y: 452, width: 420, tailSide: "right" as const },
+  mara: { x: 846, height: 292, bottom: -10, facing: "left" as const },
 };
 
 const NAV = { x: 998, y: 598, width: 182 };
@@ -44,6 +59,7 @@ const CONTROL = {
   replay: { x: 946, y: 600, width: 234 },
   numbers: { x: 866, y: 600, width: 314 },
 };
+
 
 export function ChallengeScreen({
   challenge,
