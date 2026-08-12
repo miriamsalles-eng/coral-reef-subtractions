@@ -94,10 +94,11 @@ export function MetacognitionScreen({ onFinish }: { onFinish: () => void }) {
 
       <StaticScene
         groups={q.groups}
-        x={230}
-        y={q.operation ? 90 : 110}
-        width={740}
-        height={q.operation ? 52 : 62}
+        x={q.operation ? 150 : 180}
+        y={q.operation ? 84 : 110}
+        width={q.operation ? 900 : 860}
+        height={q.operation ? 48 : 62}
+        gap={8}
         note={q.sceneNote}
       />
 
@@ -107,7 +108,7 @@ export function MetacognitionScreen({ onFinish }: { onFinish: () => void }) {
           b={q.operation.b}
           result={q.operation.result}
           x={430}
-          y={232}
+          y={246}
           width={340}
           highlight="b"
         />
@@ -119,10 +120,11 @@ export function MetacognitionScreen({ onFinish }: { onFinish: () => void }) {
         chosen={wrong}
         correct={done ? q.correct : null}
         x={200}
-        y={q.operation ? 336 : 300}
+        y={q.operation ? 346 : 300}
         width={800}
         size={q.size}
       />
+
 
       <Mara pose={done ? "feedback" : "thinking"} height={228} x={20} bottom={-8} />
 
