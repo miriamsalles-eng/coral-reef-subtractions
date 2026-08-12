@@ -23,6 +23,10 @@ export interface Challenge {
   scene: SceneSpec;
   /** Lembrete curto da quantidade inicial, visível durante toda a situação. */
   sceneNote?: string;
+  /** Selo alternativo, mais discreto, exibido antes da retirada. */
+  sceneNoteObserve?: string;
+  /** Composição mais leve (balão menor/mais alto, Mara menor). */
+  compact?: boolean;
   poses: { observe: MaraPose; ask: MaraPose; success: MaraPose };
   /** Etapa opcional: contar quantos há antes da retirada. */
   countStep?: { prompt: string; mara?: string; answer: AnswerSpec; success: string };

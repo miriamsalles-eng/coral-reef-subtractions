@@ -24,6 +24,7 @@ export const PHASE2: Challenge[] = [
       exit: "behind",
     },
     poses: { observe: "presenting", ask: "pointing", success: "feedback" },
+    compact: true,
     observe: {
       prompt: `Observe: ${havia("seahorse", 7).toLowerCase()} aqui.`,
       mara: "Veja quantos havia e acompanhe os que saírem.",
@@ -59,11 +60,13 @@ export const PHASE2: Challenge[] = [
       exit: "drift",
     },
     poses: { observe: "presenting1", ask: "thinking", success: "feedback" },
+    compact: true,
     observe: {
-      prompt: `Observe: ${havia("starfish", 9).toLowerCase()} no fundo do mar.`,
+      prompt: "Havia 9 estrelas-do-mar.",
       mara: "Uma corrente suave vai levar algumas estrelas para longe.",
       button: "Ver o que acontece",
     },
+
     ask: {
       prompt: "Complete o que aconteceu.",
       answer: { mode: "number", options: nums([4, 5, 6]), correct: 5 },
@@ -101,12 +104,15 @@ export const PHASE2: Challenge[] = [
       exit: "swim",
     },
     sceneNote: "No início: 14 animais",
+    sceneNoteObserve: "10 peixes + 4 cavalos-marinhos",
+    compact: true,
     poses: { observe: "presenting", ask: "thinking", success: "celebrating" },
     observe: {
-      prompt: "Neste lugar há 10 peixes e 4 cavalos-marinhos: 14 animais ao todo.",
-      mara: "Guarde esse total: 14 animais. Agora observe quem sai.",
+      prompt: "Observe: há 14 animais ao todo.",
+      mara: "Observe o total. Agora veja quem vai sair.",
       button: "Ver o que acontece",
     },
+
     ask: {
       prompt: "Qual conta mostra o que aconteceu?",
       answer: {
@@ -120,8 +126,9 @@ export const PHASE2: Challenge[] = [
       },
     },
     success: {
-      mara: "Havia 14 animais, saíram 4 e ficaram 10. A conta 14 − 4 = 10 mostra isso.",
+      mara: "Havia 14 animais. Saíram 4 e ficaram 10.",
     },
+
     hints: [
       "Havia 14 animais no começo. Quantos saíram?",
       "Nesta cena os animais saíram: a conta precisa ter o sinal de menos.",
