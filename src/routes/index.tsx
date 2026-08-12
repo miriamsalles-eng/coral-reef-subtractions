@@ -3,6 +3,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { GameCanvas } from "@/components/game/GameCanvas";
 import { ChallengeScreen } from "@/components/game/ChallengeScreen";
 import { StoryScreen } from "@/components/game/StoryScreen";
+import { CoverScreen } from "@/components/game/CoverScreen";
+import { IntroScreen } from "@/components/game/IntroScreen";
 import { MetacognitionScreen } from "@/components/game/MetacognitionScreen";
 import { PHASE1, TUTORIAL } from "@/data/phase1";
 import { PHASE2 } from "@/data/phase2";
@@ -27,6 +29,7 @@ export const Route = createFileRoute("/")({
 
 type Stage =
   | { kind: "cover" }
+  | { kind: "intro" }
   | { kind: "tutorial" }
   | { kind: "phase1"; index: number }
   | { kind: "transition" }
@@ -42,6 +45,8 @@ function Index() {
     setStage((current) => {
       switch (current.kind) {
         case "cover":
+          return { kind: "intro" };
+        case "intro":
           return { kind: "tutorial" };
         case "tutorial":
           return { kind: "phase1", index: 0 };
@@ -68,20 +73,9 @@ function Index() {
   const screen = useMemo(() => {
     switch (stage.kind) {
       case "cover":
-        return (
-          <StoryScreen
-            id="cover"
-            narrationId="capa"
-            background="cover"
-            title={TITLE}
-            lines={["Uma aventura de contar e retirar no fundo do mar."]}
-            mara="Oi! Eu sou Mara. Vamos descobrir juntos o que acontece quando alguns animais vão embora?"
-            pose="celebrating"
-            buttonKind="start"
-            buttonLabel="Iniciar"
-            onNext={advance}
-          />
-        );
+        return <CoverScreen onStart={advance} />;
+      case "intro":
+        return <IntroScreen onNext={advance} />;
       case "tutorial":
         return <ChallengeScreen challenge={TUTORIAL} onFinish={advance} />;
       case "phase1":
