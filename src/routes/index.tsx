@@ -6,6 +6,7 @@ import { StoryScreen } from "@/components/game/StoryScreen";
 import { CoverScreen } from "@/components/game/CoverScreen";
 import { IntroScreen } from "@/components/game/IntroScreen";
 import { MetacognitionScreen } from "@/components/game/MetacognitionScreen";
+import { SynthesisScreen } from "@/components/game/SynthesisScreen";
 import { PHASE1, TUTORIAL } from "@/data/phase1";
 import { PHASE2 } from "@/data/phase2";
 
