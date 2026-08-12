@@ -13,14 +13,15 @@ export function IntroScreen({ onNext }: { onNext: () => void }) {
 
   return (
     <GameScreen background="reflection">
-      <Mara pose="neutral" height={420} x={90} bottom={0} />
+      {/* Mara à esquerda, olhando para o balão que está à sua direita */}
+      <Mara pose="neutral" height={440} x={70} bottom={0} facing="right" />
 
       <SpeechBubble
         text={MARA_LINE}
-        x={520}
-        y={150}
+        x={444}
+        y={196}
         width={520}
-        tail="left"
+        tailSide="left"
         onSpeak={(t) => speak(t, "intro.apresentacao")}
       />
 
