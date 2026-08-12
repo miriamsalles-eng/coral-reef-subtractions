@@ -6,6 +6,7 @@ import { StoryScreen } from "@/components/game/StoryScreen";
 import { CoverScreen } from "@/components/game/CoverScreen";
 import { IntroScreen } from "@/components/game/IntroScreen";
 import { MetacognitionScreen } from "@/components/game/MetacognitionScreen";
+import { SynthesisScreen } from "@/components/game/SynthesisScreen";
 import { PHASE1, TUTORIAL } from "@/data/phase1";
 import { PHASE2 } from "@/data/phase2";
 
@@ -101,22 +102,7 @@ function Index() {
       case "phase2":
         return <ChallengeScreen challenge={PHASE2[stage.index]!} onFinish={advance} />;
       case "synthesis":
-        return (
-          <StoryScreen
-            id="synthesis"
-            narrationId="sintese"
-            background="ten"
-            title="O que aprendemos"
-            lines={[
-              "Quando alguns animais saem, a quantidade que fica é menor.",
-              "O sinal de menos (−) mostra a retirada: 8 − 3 = 5.",
-            ]}
-            mara="Retirar é tirar de dentro do total. O que sobra é o resultado."
-            pose="presenting1"
-            buttonLabel="Seguir"
-            onNext={advance}
-          />
-        );
+        return <SynthesisScreen onFinish={advance} />;
       case "metacognition":
         return <MetacognitionScreen onFinish={advance} />;
       case "closure":

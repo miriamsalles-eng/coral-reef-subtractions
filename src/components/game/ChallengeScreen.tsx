@@ -12,7 +12,7 @@ import { useInteractionTimers } from "@/lib/useInteractionTimers";
 import { useNarration } from "@/lib/useNarration";
 import type { Challenge } from "@/data/types";
 
-type Step = "count" | "observe" | "animating" | "ask" | "success" | "numbers";
+type Step = "count" | "observe" | "pause" | "animating" | "ask" | "success" | "numbers";
 
 interface Layout {
   mara: { x: number; height: number; bottom: number };
@@ -84,12 +84,16 @@ export function ChallengeScreen({
     setStep("animating");
   };
 
-  const replay = () => {
+  /** Uma única repetição: limpa timers, restaura a cena, espera e anima uma vez. */
+  const replayRemovalAnimation = () => {
     clearInteractionTimers();
     stop();
     setRemoved(false);
-    setStep("animating");
-    after(500, () => setReplayKey((k) => k + 1));
+    setStep("pause");
+    after(500, () => {
+      setReplayKey((k) => k + 1);
+      setStep("animating");
+    });
   };
 
   const onRemovalFinished = () => {
@@ -136,6 +140,7 @@ export function ChallengeScreen({
           pose: challenge.poses.observe,
           tone: "hint" as const,
         };
+      case "pause":
       case "animating":
         return {
           prompt: "Observe com atenção o que está acontecendo.",
@@ -191,6 +196,19 @@ export function ChallengeScreen({
         total={challenge.total || undefined}
       />
       <PromptCard text={prompt} />
+
+      {challenge.sceneNote && (
+        <div
+          className="animate-soft-in absolute rounded-full border-4 border-white/80 bg-prompt/92 px-5 py-1 text-center"
+          style={{ left: 450, top: 92, width: 300 }}
+        >
+          <p className="font-display text-[22px] font-semibold text-prompt-foreground">
+            {challenge.sceneNote}
+          </p>
+        </div>
+      )}
+
+
 
       <AnimalScene
         spec={challenge.scene}
@@ -251,7 +269,7 @@ export function ChallengeScreen({
       {step === "ask" && (
         <ControlButton
           label="Ver novamente"
-          onClick={replay}
+          onClick={replayRemovalAnimation}
           x={CONTROL.replay.x}
           y={CONTROL.replay.y}
           width={CONTROL.replay.width}

@@ -21,6 +21,8 @@ export interface Challenge {
   species: SpeciesKey;
   composition: Composition;
   scene: SceneSpec;
+  /** Lembrete curto da quantidade inicial, visível durante toda a situação. */
+  sceneNote?: string;
   poses: { observe: MaraPose; ask: MaraPose; success: MaraPose };
   /** Etapa opcional: contar quantos há antes da retirada. */
   countStep?: { prompt: string; mara?: string; answer: AnswerSpec; success: string };
