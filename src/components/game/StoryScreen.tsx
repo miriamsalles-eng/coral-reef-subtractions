@@ -35,8 +35,9 @@ export function StoryScreen({
   side?: "left" | "right";
 }) {
   const { speak } = useNarration(id);
-  const maraX = side === "left" ? 36 : 900;
-  const bubbleX = side === "left" ? 250 : 470;
+  const maraX = side === "left" ? 26 : 890;
+  const bubbleX = side === "left" ? 320 : 424;
+  const bubbleWidth = side === "left" ? 470 : 440;
   const textX = side === "left" ? 250 : 60;
 
   return (
