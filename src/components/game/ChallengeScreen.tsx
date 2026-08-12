@@ -12,7 +12,7 @@ import { useInteractionTimers } from "@/lib/useInteractionTimers";
 import { useNarration } from "@/lib/useNarration";
 import type { Challenge } from "@/data/types";
 
-type Step = "count" | "observe" | "animating" | "ask" | "success" | "numbers";
+type Step = "count" | "observe" | "pause" | "animating" | "ask" | "success" | "numbers";
 
 interface Layout {
   mara: { x: number; height: number; bottom: number };
