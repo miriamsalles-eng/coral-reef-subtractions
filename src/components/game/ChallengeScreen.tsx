@@ -256,7 +256,7 @@ export function ChallengeScreen({
       {step === "ask" && (
         <ControlButton
           label="Ver novamente"
-          onClick={replay}
+          onClick={replayRemovalAnimation}
           x={CONTROL.replay.x}
           y={CONTROL.replay.y}
           width={CONTROL.replay.width}
