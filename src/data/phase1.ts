@@ -1,0 +1,236 @@
+import type { Challenge } from "./types";
+import { ficou, havia, MINUS, quantosFicaram, saiu } from "@/lib/pt";
+
+const PHASE = "Fase 1";
+const SECTION = "Os peixes do recife";
+
+const nums = (values: number[]) => values.map((v) => ({ value: v, label: String(v) }));
+
+export const TUTORIAL: Challenge = {
+  id: "tutorial",
+  narrationId: "tutorial.observar",
+  phaseLabel: "Tutorial",
+  sectionLabel: "Vamos aprender juntos",
+  index: 0,
+  total: 0,
+  background: "activity",
+  species: "fish",
+  composition: "A",
+  scene: {
+    units: [{ species: "fish-yellow", count: 3 }],
+    leaving: [{ species: "fish-yellow", count: 1 }],
+    layout: "row",
+    exit: "swim",
+  },
+  poses: { observe: "presenting", ask: "pointing", success: "feedback" },
+  observe: {
+    prompt: "Veja os peixes no recife.",
+    mara: "Olhe com calma: um deles vai nadar para longe.",
+    button: "Ver o que acontece",
+  },
+  ask: {
+    prompt: quantosFicaram("fish"),
+    answer: { mode: "number", options: nums([2, 3, 4]), correct: 2 },
+  },
+  success: { mara: `Isso mesmo! ${havia("fish", 3)}, ${saiu("fish", 1)} e ${ficou("fish", 2)}.` },
+  numbers: {
+    a: 3,
+    b: 1,
+    result: 2,
+    mara: `O sinal de menos (${MINUS}) mostra que uma quantidade foi retirada.`,
+  },
+  hints: [
+    "Conte de novo os peixes que ficaram na cena.",
+    "Um peixe foi embora. Comece do 3 e volte um.",
+  ],
+};
+
+export const PHASE1: Challenge[] = [
+  {
+    id: "d1",
+    narrationId: "fase1.d1",
+    phaseLabel: PHASE,
+    sectionLabel: SECTION,
+    index: 1,
+    total: 5,
+    background: "activity",
+    species: "fish",
+    composition: "B",
+    scene: {
+      units: [{ species: "fish-yellow", count: 5 }],
+      leaving: [{ species: "fish-yellow", count: 1 }],
+      layout: "row",
+      exit: "swim",
+    },
+    poses: { observe: "presenting1", ask: "pointing", success: "feedback" },
+    countStep: {
+      prompt: "Quantos peixes há no recife?",
+      mara: "Conte com calma e escolha o número.",
+      answer: { mode: "number", options: nums([4, 5, 6]), correct: 5 },
+      success: "Muito bem! São 5 peixes.",
+    },
+    observe: {
+      prompt: "Veja o que acontece.",
+      mara: "Acompanhe o peixe que vai embora.",
+      button: "Ver o que acontece",
+    },
+    ask: {
+      prompt: quantosFicaram("fish"),
+      answer: { mode: "number", options: nums([3, 4, 5]), correct: 4 },
+    },
+    success: { mara: `${havia("fish", 5)}, ${saiu("fish", 1)} e ${ficou("fish", 4)}.` },
+    numbers: { a: 5, b: 1, result: 4, mara: "Um peixe saiu: por isso tiramos 1 de 5." },
+    hints: ["Conte os peixes que ficaram na cena.", "Comece do 5 e volte um peixe."],
+  },
+  {
+    id: "d2",
+    narrationId: "fase1.d2",
+    phaseLabel: PHASE,
+    sectionLabel: SECTION,
+    index: 2,
+    total: 5,
+    background: "activity",
+    species: "fish",
+    composition: "A",
+    scene: {
+      units: [
+        { species: "fish-yellow", count: 3 },
+        { species: "fish-turquoise", count: 3 },
+      ],
+      leaving: [{ species: "fish-turquoise", count: 2 }],
+      layout: "grid",
+      exit: "swim",
+    },
+    poses: { observe: "presenting", ask: "pointing", success: "feedback" },
+    observe: {
+      prompt: `Observe: ${havia("fish", 6).toLowerCase()} no recife.`,
+      mara: "Agora dois peixes vão sair, um de cada vez.",
+      button: "Ver o que acontece",
+    },
+    ask: {
+      prompt: quantosFicaram("fish"),
+      answer: { mode: "number", options: nums([3, 4, 5]), correct: 4 },
+    },
+    success: { mara: `${havia("fish", 6)}, ${saiu("fish", 2)} e ${ficou("fish", 4)}.` },
+    numbers: { a: 6, b: 2, result: 4, mara: "Saíram dois peixes: tiramos 2 de 6." },
+    hints: [
+      "Observe novamente os peixes que saíram.",
+      "Conte só os peixes que continuam na cena.",
+    ],
+  },
+  {
+    id: "d3",
+    narrationId: "fase1.d3",
+    phaseLabel: PHASE,
+    sectionLabel: SECTION,
+    index: 3,
+    total: 5,
+    background: "activity",
+    species: "fish",
+    composition: "B",
+    scene: {
+      units: [
+        { species: "fish-turquoise", count: 4 },
+        { species: "fish-yellow", count: 4 },
+      ],
+      leaving: [{ species: "fish-yellow", count: 3 }],
+      layout: "grid",
+      exit: "swim",
+    },
+    poses: { observe: "presenting1", ask: "pointing", success: "feedback" },
+    observe: {
+      prompt: `Observe: ${havia("fish", 8).toLowerCase()} no recife.`,
+      mara: "Três peixes vão sair, um depois do outro.",
+      button: "Ver o que acontece",
+    },
+    ask: {
+      prompt: quantosFicaram("fish"),
+      answer: { mode: "number", options: nums([4, 5, 6]), correct: 5 },
+    },
+    success: { mara: `${havia("fish", 8)}, ${saiu("fish", 3)} e ${ficou("fish", 5)}.` },
+    numbers: { a: 8, b: 3, result: 5, mara: "De 8 peixes tiramos 3 e sobraram 5." },
+    hints: ["Conte os peixes que ficaram na cena.", "Foram três peixes que nadaram para longe."],
+  },
+  {
+    id: "d4",
+    narrationId: "fase1.d4",
+    phaseLabel: PHASE,
+    sectionLabel: SECTION,
+    index: 4,
+    total: 5,
+    background: "activity",
+    species: "fish",
+    composition: "A",
+    scene: {
+      groupOfTen: true,
+      groupLabel: "grupo de 10 peixes",
+      units: [{ species: "fish-yellow", count: 2 }],
+      leaving: [{ species: "fish-yellow", count: 2 }],
+      layout: "group-and-singles",
+      exit: "swim",
+    },
+    poses: { observe: "presenting", ask: "pointing", success: "feedback" },
+    countStep: {
+      prompt: "Quantos peixes há ao todo?",
+      mara: "Comece pelo grupo de 10 e conte também os peixes separados.",
+      answer: { mode: "number", options: nums([11, 12, 13]), correct: 12 },
+      success: "Isso! O grupo de 10 e mais 2 peixes separados são 12.",
+    },
+    observe: {
+      prompt: "Veja o que acontece.",
+      mara: "Os dois peixes separados vão sair.",
+      button: "Ver o que acontece",
+    },
+    ask: {
+      prompt: quantosFicaram("fish"),
+      answer: { mode: "number", options: nums([9, 10, 11]), correct: 10 },
+    },
+    success: { mara: `${havia("fish", 12)}, ${saiu("fish", 2)} e ficou o grupo de 10 peixes.` },
+    numbers: { a: 12, b: 2, result: 10, mara: "Saíram os 2 peixes separados e ficou o grupo de 10." },
+    hints: [
+      "Use o grupo de 10 para ajudar.",
+      "Os peixes separados saíram. Quantos peixes o grupo tem?",
+    ],
+  },
+  {
+    id: "d5",
+    narrationId: "fase1.d5",
+    phaseLabel: PHASE,
+    sectionLabel: SECTION,
+    index: 5,
+    total: 5,
+    background: "activity",
+    species: "fish",
+    composition: "B",
+    scene: {
+      groupOfTen: true,
+      groupLabel: "grupo de 10 peixes",
+      units: [{ species: "fish-turquoise", count: 6 }],
+      leaving: [{ species: "fish-turquoise", count: 4 }],
+      layout: "group-and-singles",
+      exit: "swim",
+    },
+    poses: { observe: "presenting1", ask: "pointing", success: "feedback" },
+    countStep: {
+      prompt: "Quantos peixes há ao todo?",
+      mara: "Use o grupo de 10 para ajudar na contagem.",
+      answer: { mode: "number", options: nums([15, 16, 17]), correct: 16 },
+      success: "Muito bem! 10 no grupo e 6 separados são 16.",
+    },
+    observe: {
+      prompt: "Veja o que acontece.",
+      mara: "Quatro peixes separados vão nadar para longe.",
+      button: "Ver o que acontece",
+    },
+    ask: {
+      prompt: quantosFicaram("fish"),
+      answer: { mode: "number", options: nums([11, 12, 13]), correct: 12 },
+    },
+    success: { mara: `${havia("fish", 16)}, ${saiu("fish", 4)} e ${ficou("fish", 12)}.` },
+    numbers: { a: 16, b: 4, result: 12, mara: "O grupo de 10 ficou inteiro e sobraram 2 separados." },
+    hints: [
+      "Use o grupo de 10 para ajudar.",
+      "Conte o grupo de 10 e depois os peixes separados que ficaram.",
+    ],
+  },
+];
