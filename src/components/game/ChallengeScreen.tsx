@@ -27,8 +27,8 @@ const LAYOUTS: Record<Challenge["composition"], Layout> = {
     answers: { x: 590, y: 456, width: 560 },
   },
   B: {
-    mara: { x: 845, height: 228, bottom: -6 },
-    bubble: { x: 528, y: 450, width: 292, tail: "right" },
+    mara: { x: 848, height: 226, bottom: -6 },
+    bubble: { x: 512, y: 450, width: 316, tail: "right" },
     answers: { x: 30, y: 456, width: 470 },
   },
   C: {
@@ -39,7 +39,11 @@ const LAYOUTS: Record<Challenge["composition"], Layout> = {
 };
 
 const NAV = { x: 998, y: 598, width: 182 };
-const CONTROL = { replay: { x: 946, y: 600, width: 234 }, numbers: { x: 866, y: 600, width: 314 } };
+const CONTROL = {
+  observe: { x: 878, y: 598, width: 302 },
+  replay: { x: 946, y: 600, width: 234 },
+  numbers: { x: 866, y: 600, width: 314 },
+};
 
 export function ChallengeScreen({
   challenge,
@@ -238,9 +242,9 @@ export function ChallengeScreen({
         <ControlButton
           label={challenge.observe.button}
           onClick={startRemoval}
-          x={CONTROL.replay.x}
-          y={CONTROL.replay.y}
-          width={CONTROL.replay.width}
+          x={CONTROL.observe.x}
+          y={CONTROL.observe.y}
+          width={CONTROL.observe.width}
         />
       )}
 
