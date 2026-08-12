@@ -51,7 +51,7 @@ export function AnswerOptions({
             type="button"
             disabled={isWrong || correct !== null}
             onClick={() => onChoose(opt.value)}
-            aria-label={opt.ariaLabel ?? opt.label}
+            aria-label={opt.ariaLabel ?? (size === "number" ? `Resposta ${opt.label}` : opt.label)}
             className={[
               "flex min-h-[92px] flex-1 items-center justify-center rounded-3xl border-[6px] font-display font-semibold shadow-[0_8px_0_rgb(0_0_0_/_0.12)] transition-all",
               isCorrect
