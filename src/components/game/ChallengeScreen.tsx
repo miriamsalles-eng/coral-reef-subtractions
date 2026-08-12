@@ -136,6 +136,7 @@ export function ChallengeScreen({
           pose: challenge.poses.observe,
           tone: "hint" as const,
         };
+      case "pause":
       case "animating":
         return {
           prompt: "Observe com atenção o que está acontecendo.",
