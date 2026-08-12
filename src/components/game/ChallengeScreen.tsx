@@ -197,6 +197,19 @@ export function ChallengeScreen({
       />
       <PromptCard text={prompt} />
 
+      {challenge.sceneNote && (
+        <div
+          className="animate-soft-in absolute rounded-full border-4 border-white/80 bg-prompt/92 px-5 py-1 text-center"
+          style={{ left: 450, top: 92, width: 300 }}
+        >
+          <p className="font-display text-[22px] font-semibold text-prompt-foreground">
+            {challenge.sceneNote}
+          </p>
+        </div>
+      )}
+
+
+
       <AnimalScene
         spec={challenge.scene}
         running={step === "animating"}
