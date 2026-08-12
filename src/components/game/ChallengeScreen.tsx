@@ -201,7 +201,14 @@ export function ChallengeScreen({
         : null;
 
   const askOperation = step === "ask" || step === "success" ? challenge.ask.operation : undefined;
-  const bubbleY = askOperation && challenge.composition === "C" ? 592 : layout.bubble?.y;
+  const isNumbers = step === "numbers" && !!challenge.numbers;
+
+  // Na etapa "mostrar com números" os três elementos formam um conjunto horizontal.
+  const maraSpec = isNumbers ? NUMBERS_GROUP.mara : layout.mara;
+  const bubbleSpec = isNumbers ? NUMBERS_GROUP.bubble : layout.bubble;
+  const bubbleY =
+    !isNumbers && askOperation && challenge.composition === "C" ? 592 : bubbleSpec?.y;
+
 
   return (
     <GameScreen background={challenge.background}>
