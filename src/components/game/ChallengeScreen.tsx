@@ -67,7 +67,7 @@ const CONTROL = {
 const COMPACT_LAYOUT: Layout = {
   mara: { x: 952, height: 236, bottom: -6, facing: "left" },
   bubble: { x: 596, y: 556, width: 392, tailSide: "right" },
-  answers: { x: 290, y: 424, width: 650 },
+  answers: { x: 344, y: 424, width: 560 },
   operation: { x: 46, y: 424, width: 272 },
 };
 const COMPACT_NAV = { x: 34, y: 596, width: 182 };
@@ -77,7 +77,13 @@ const COMPACT_CONTROL = {
   numbers: { x: 34, y: 596, width: 314 },
 };
 
-export function ChallengeScreen({ challenge, onFinish }: { challenge: Challenge; onFinish: () => void }) {
+export function ChallengeScreen({
+  challenge,
+  onFinish,
+}: {
+  challenge: Challenge;
+  onFinish: () => void;
+}) {
   const base = LAYOUTS[challenge.composition];
   const layout: Layout = challenge.compact ? COMPACT_LAYOUT : base;
   const nav = challenge.compact ? COMPACT_NAV : NAV;
@@ -221,10 +227,13 @@ export function ChallengeScreen({ challenge, onFinish }: { challenge: Challenge;
   const maraSpec = isNumbers ? NUMBERS_GROUP.mara : layout.mara;
   const bubbleSpec = isNumbers ? NUMBERS_GROUP.bubble : layout.bubble;
   const bubbleY =
-    !isNumbers && !challenge.compact && askOperation && challenge.composition === "C" ? 592 : bubbleSpec?.y;
+    !isNumbers && !challenge.compact && askOperation && challenge.composition === "C"
+      ? 592
+      : bubbleSpec?.y;
 
   const isObserving = step === "count" || step === "observe" || step === "pause" || step === "animating";
   const sceneNote = (isObserving && challenge.sceneNoteObserve) || challenge.sceneNote;
+
 
   return (
     <GameScreen background={challenge.background}>
@@ -241,9 +250,14 @@ export function ChallengeScreen({ challenge, onFinish }: { challenge: Challenge;
           className="animate-soft-in absolute rounded-full border-4 border-white/80 bg-prompt/92 px-5 py-1 text-center"
           style={{ left: 420, top: 92, width: 360 }}
         >
-          <p className="font-display text-[21px] font-semibold text-prompt-foreground">{sceneNote}</p>
+          <p className="font-display text-[21px] font-semibold text-prompt-foreground">
+            {sceneNote}
+          </p>
         </div>
       )}
+
+
+
 
       <AnimalScene
         spec={challenge.scene}
@@ -253,7 +267,13 @@ export function ChallengeScreen({ challenge, onFinish }: { challenge: Challenge;
         onFinished={onRemovalFinished}
       />
 
-      <Mara pose={pose} height={maraSpec.height} x={maraSpec.x} bottom={maraSpec.bottom} facing={maraSpec.facing} />
+      <Mara
+        pose={pose}
+        height={maraSpec.height}
+        x={maraSpec.x}
+        bottom={maraSpec.bottom}
+        facing={maraSpec.facing}
+      />
 
       {maraText && bubbleSpec && (
         <SpeechBubble
@@ -277,6 +297,7 @@ export function ChallengeScreen({ challenge, onFinish }: { challenge: Challenge;
           width={layout.operation.width}
         />
       )}
+
 
       {showAnswers && (
         <AnswerOptions
