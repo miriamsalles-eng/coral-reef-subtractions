@@ -32,7 +32,7 @@ export const TUTORIAL: Challenge = {
     prompt: quantosFicaram("fish"),
     answer: { mode: "number", options: nums([2, 3, 4]), correct: 2 },
   },
-  success: { mara: `Isso mesmo! ${havia("fish", 3)}, ${saiu("fish", 1)} e ${ficou("fish", 2)}.` },
+  success: { mara: `Isso mesmo! ${havia("fish", 5)}. 1 peixe saiu e ${ficou("fish", 4)}` },
   numbers: {
     a: 3,
     b: 1,
@@ -68,7 +68,7 @@ export const PHASE1: Challenge[] = [
     },
     observe: {
       prompt: "Veja o que acontece.",
-      mara: "Acompanhe o peixe que vai embora.",
+      mara: "Seré que todos ficarão por aqui?",
       button: "Ver o que acontece",
     },
     ask: {
@@ -101,7 +101,7 @@ export const PHASE1: Challenge[] = [
     poses: { observe: "presenting", ask: "pointing", success: "feedback" },
     observe: {
       prompt: `Observe: ${havia("fish", 6).toLowerCase()} no recife.`,
-      mara: "Agora dois peixes vão sair, um de cada vez.",
+      mara: "Aguns peixes vão sair para procurar alimento.",
       button: "Ver o que acontece",
     },
     ask: {
@@ -134,7 +134,7 @@ export const PHASE1: Challenge[] = [
     poses: { observe: "presenting1", ask: "pointing", success: "feedback" },
     observe: {
       prompt: `Observe: ${havia("fish", 8).toLowerCase()} no recife.`,
-      mara: "Três peixes vão sair, um depois do outro.",
+      mara: "Alguns peixes vão sair, um depois do outro.",
       button: "Ver o que acontece",
     },
     ask: {
@@ -166,13 +166,13 @@ export const PHASE1: Challenge[] = [
     poses: { observe: "presenting", ask: "pointing", success: "feedback" },
     countStep: {
       prompt: "Quantos peixes há ao todo?",
-      mara: "Comece pelo grupo de 10 e conte também os peixes separados.",
+      mara: "Comece pelo grupo de 10 e conte também os fora do grupo.",
       answer: { mode: "number", options: nums([11, 12, 13]), correct: 12 },
-      success: "Isso! O grupo de 10 e mais 2 peixes separados são 12.",
+      success: "Isso! O grupo de 10 e mais os 2 peixes são 12.",
     },
     observe: {
       prompt: "Veja o que acontece.",
-      mara: "Os dois peixes separados vão sair.",
+      mara: "Seré que alguém vai sair?",
       button: "Ver o que acontece",
     },
     ask: {
@@ -181,7 +181,7 @@ export const PHASE1: Challenge[] = [
     },
     success: { mara: `${havia("fish", 12)}, ${saiu("fish", 2)} e ficou o grupo de 10 peixes.` },
     numbers: { a: 12, b: 2, result: 10, mara: "Saíram os 2 peixes separados e ficou o grupo de 10." },
-    hints: ["Use o grupo de 10 para ajudar.", "Os peixes separados saíram. Quantos peixes o grupo tem?"],
+    hints: ["Use o grupo de 10 para ajudar.", "Os peixes que não estavam no grupo saíram. Quantos peixes o grupo tem?"],
   },
   {
     id: "d5",
@@ -210,7 +210,7 @@ export const PHASE1: Challenge[] = [
     },
     observe: {
       prompt: "Veja o que acontece.",
-      mara: "Quatro peixes separados vão nadar para longe.",
+      mara: "Seré que alguém vai nadar para longe?",
       button: "Ver o que acontece",
     },
     ask: {
