@@ -25,7 +25,7 @@ export const TUTORIAL: Challenge = {
   poses: { observe: "presenting", ask: "pointing", success: "feedback" },
   observe: {
     prompt: "Veja os peixes no recife.",
-    mara: "Olhe com calma: um deles vai nadar para longe.",
+    mara: "Olhe com calma: quantos peixes estão por aqui? Depois, veja o que acontece!.",
     button: "Ver o que acontece",
   },
   ask: {
@@ -39,10 +39,7 @@ export const TUTORIAL: Challenge = {
     result: 2,
     mara: `O sinal de menos (${MINUS}) mostra que uma quantidade foi retirada.`,
   },
-  hints: [
-    "Conte de novo os peixes que ficaram na cena.",
-    "Um peixe foi embora. Comece do 3 e volte um.",
-  ],
+  hints: ["Conte de novo os peixes que ficaram na cena.", "Um peixe foi embora. Comece do 3 e volte um."],
 };
 
 export const PHASE1: Challenge[] = [
@@ -113,10 +110,7 @@ export const PHASE1: Challenge[] = [
     },
     success: { mara: `${havia("fish", 6)}, ${saiu("fish", 2)} e ${ficou("fish", 4)}.` },
     numbers: { a: 6, b: 2, result: 4, mara: "Saíram dois peixes: tiramos 2 de 6." },
-    hints: [
-      "Observe novamente os peixes que saíram.",
-      "Conte só os peixes que continuam na cena.",
-    ],
+    hints: ["Observe novamente os peixes que saíram.", "Conte só os peixes que continuam na cena."],
   },
   {
     id: "d3",
@@ -187,10 +181,7 @@ export const PHASE1: Challenge[] = [
     },
     success: { mara: `${havia("fish", 12)}, ${saiu("fish", 2)} e ficou o grupo de 10 peixes.` },
     numbers: { a: 12, b: 2, result: 10, mara: "Saíram os 2 peixes separados e ficou o grupo de 10." },
-    hints: [
-      "Use o grupo de 10 para ajudar.",
-      "Os peixes separados saíram. Quantos peixes o grupo tem?",
-    ],
+    hints: ["Use o grupo de 10 para ajudar.", "Os peixes separados saíram. Quantos peixes o grupo tem?"],
   },
   {
     id: "d5",
@@ -228,9 +219,6 @@ export const PHASE1: Challenge[] = [
     },
     success: { mara: `${havia("fish", 16)}, ${saiu("fish", 4)} e ${ficou("fish", 12)}.` },
     numbers: { a: 16, b: 4, result: 12, mara: "O grupo de 10 ficou inteiro e sobraram 2 separados." },
-    hints: [
-      "Use o grupo de 10 para ajudar.",
-      "Conte o grupo de 10 e depois os peixes separados que ficaram.",
-    ],
+    hints: ["Use o grupo de 10 para ajudar.", "Conte o grupo de 10 e depois os peixes separados que ficaram."],
   },
 ];
