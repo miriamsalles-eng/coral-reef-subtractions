@@ -97,7 +97,7 @@ export const PHASE2: Challenge[] = [
         { species: "seahorse", count: 4 },
       ],
       leaving: [
-        { species: "fish-turquoise", count: 2 },
+        { species: "fish-turquoise", count: 3 },
         { species: "seahorse", count: 2 },
       ],
       layout: "mixed",
@@ -118,15 +118,15 @@ export const PHASE2: Challenge[] = [
       answer: {
         mode: "operation",
         options: [
-          { value: "14-4", label: "14 − 4 = 10", ariaLabel: "14 menos 4 é igual a 10" },
-          { value: "14+4", label: "14 + 4 = 18", ariaLabel: "14 mais 4 é igual a 18" },
-          { value: "10-4", label: "10 − 4 = 6", ariaLabel: "10 menos 4 é igual a 6" },
+          { value: "14-5", label: "14 − 5 = 9", ariaLabel: "14 menos 5 é igual a 9" },
+          { value: "14+5", label: "14 + 5 = 19", ariaLabel: "14 mais 5 é igual a 19" },
+          { value: "9-5", label: "9 − 5 = 4", ariaLabel: "9 menos 5 é igual a 4" },
         ],
-        correct: "14-4",
+        correct: "14-5",
       },
     },
     success: {
-      mara: "Havia 14 animais. Saíram 4 e ficaram 10.",
+      mara: "Havia 14 animais, 5 saíram e ficaram 9.",
     },
 
     hints: [
