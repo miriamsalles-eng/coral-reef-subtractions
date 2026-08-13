@@ -66,7 +66,12 @@ function buildItems(spec: SceneSpec): Item[] {
     const perRow = n <= 3 ? n : 3;
     const spacing = 108;
     const rows = Math.ceil(n / perRow);
-    const centerX = 830;
+    // Mantém os peixes fora do grupo perto do bloco do grupo de 10,
+    // com separação visível mas sem espaço vazio grande.
+    const groupRight = 450;
+    const gapToGroup = 96;
+    const rowWidth = (Math.min(perRow, n) - 1) * spacing;
+    const centerX = spec.groupOfTen ? groupRight + gapToGroup + rowWidth / 2 : 830;
     flat.forEach((_, i) => {
       const row = Math.floor(i / perRow);
       const col = i % perRow;
