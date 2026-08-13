@@ -19,7 +19,7 @@ export const PHASE2: Challenge[] = [
     composition: "A",
     scene: {
       units: [{ species: "seahorse", count: 7 }],
-      leaving: [{ species: "seahorse", count: 2 }],
+      leaving: [{ species: "seahorse", count: 3 }],
       layout: "grid",
       exit: "behind",
     },
@@ -32,12 +32,12 @@ export const PHASE2: Challenge[] = [
     },
     ask: {
       prompt: quantosFicaram("seahorse"),
-      answer: { mode: "number", options: nums([4, 5, 6]), correct: 5 },
+      answer: { mode: "number", options: nums([3, 4, 5]), correct: 4 },
     },
     success: {
-      mara: `${havia("seahorse", 7)}, ${saiu("seahorse", 2)} para trás dos corais e ${ficou("seahorse", 5)}.`,
+      mara: `${havia("seahorse", 7)}, ${saiu("seahorse", 3)} para trás dos corais e ${ficou("seahorse", 4)}.`,
     },
-    numbers: { a: 7, b: 2, result: 5, mara: "A mesma ideia dos peixes serve aqui também." },
+    numbers: { a: 7, b: 3, result: 4, mara: "A mesma ideia dos peixes serve aqui também." },
     hints: [
       "Observe novamente os cavalos-marinhos que saíram.",
       "Conte os que ficaram na cena.",
@@ -55,7 +55,7 @@ export const PHASE2: Challenge[] = [
     composition: "C",
     scene: {
       units: [{ species: "starfish", count: 9 }],
-      leaving: [{ species: "starfish", count: 4 }],
+      leaving: [{ species: "starfish", count: 2 }],
       layout: "grid",
       exit: "drift",
     },
@@ -69,11 +69,11 @@ export const PHASE2: Challenge[] = [
 
     ask: {
       prompt: "Complete o que aconteceu.",
-      answer: { mode: "number", options: nums([4, 5, 6]), correct: 5 },
-      operation: { a: 9, b: 4 },
+      answer: { mode: "number", options: nums([6, 7, 8]), correct: 7 },
+      operation: { a: 9, b: 2 },
     },
     success: {
-      mara: `${havia("starfish", 9)}, ${saiu("starfish", 4)} com a corrente e ${ficou("starfish", 5)}.`,
+      mara: `${havia("starfish", 9)}, ${saiu("starfish", 2)} com a corrente e ${ficou("starfish", 7)}.`,
     },
     hints: [
       "Observe novamente as estrelas que a corrente levou.",
@@ -97,7 +97,7 @@ export const PHASE2: Challenge[] = [
         { species: "seahorse", count: 4 },
       ],
       leaving: [
-        { species: "fish-turquoise", count: 2 },
+        { species: "fish-turquoise", count: 3 },
         { species: "seahorse", count: 2 },
       ],
       layout: "mixed",
@@ -118,15 +118,15 @@ export const PHASE2: Challenge[] = [
       answer: {
         mode: "operation",
         options: [
-          { value: "14-4", label: "14 − 4 = 10", ariaLabel: "14 menos 4 é igual a 10" },
-          { value: "14+4", label: "14 + 4 = 18", ariaLabel: "14 mais 4 é igual a 18" },
-          { value: "10-4", label: "10 − 4 = 6", ariaLabel: "10 menos 4 é igual a 6" },
+          { value: "14-5", label: "14 − 5 = 9", ariaLabel: "14 menos 5 é igual a 9" },
+          { value: "14+5", label: "14 + 5 = 19", ariaLabel: "14 mais 5 é igual a 19" },
+          { value: "9-5", label: "9 − 5 = 4", ariaLabel: "9 menos 5 é igual a 4" },
         ],
-        correct: "14-4",
+        correct: "14-5",
       },
     },
     success: {
-      mara: "Havia 14 animais. Saíram 4 e ficaram 10.",
+      mara: "Havia 14 animais, 5 saíram e ficaram 9.",
     },
 
     hints: [
