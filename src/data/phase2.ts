@@ -19,7 +19,7 @@ export const PHASE2: Challenge[] = [
     composition: "A",
     scene: {
       units: [{ species: "seahorse", count: 7 }],
-      leaving: [{ species: "seahorse", count: 2 }],
+      leaving: [{ species: "seahorse", count: 3 }],
       layout: "grid",
       exit: "behind",
     },
@@ -32,12 +32,12 @@ export const PHASE2: Challenge[] = [
     },
     ask: {
       prompt: quantosFicaram("seahorse"),
-      answer: { mode: "number", options: nums([4, 5, 6]), correct: 5 },
+      answer: { mode: "number", options: nums([3, 4, 5]), correct: 4 },
     },
     success: {
-      mara: `${havia("seahorse", 7)}, ${saiu("seahorse", 2)} para trás dos corais e ${ficou("seahorse", 5)}.`,
+      mara: `${havia("seahorse", 7)}, ${saiu("seahorse", 3)} para trás dos corais e ${ficou("seahorse", 4)}.`,
     },
-    numbers: { a: 7, b: 2, result: 5, mara: "A mesma ideia dos peixes serve aqui também." },
+    numbers: { a: 7, b: 3, result: 4, mara: "A mesma ideia dos peixes serve aqui também." },
     hints: [
       "Observe novamente os cavalos-marinhos que saíram.",
       "Conte os que ficaram na cena.",
