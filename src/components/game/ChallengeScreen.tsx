@@ -60,6 +60,22 @@ const CONTROL = {
   numbers: { x: 866, y: 600, width: 314 },
 };
 
+/**
+ * Fase 2: enunciado no topo, animais no centro, operação e alternativas
+ * logo ABAIXO da cena (nunca sobre os animais) e Mara/balão/botões na base.
+ */
+const COMPACT_LAYOUT: Layout = {
+  mara: { x: 1004, height: 236, bottom: -6, facing: "left" },
+  bubble: { x: 596, y: 556, width: 392, tailSide: "right" },
+  answers: { x: 344, y: 424, width: 560 },
+  operation: { x: 46, y: 424, width: 272 },
+};
+const COMPACT_NAV = { x: 34, y: 596, width: 182 };
+const COMPACT_CONTROL = {
+  observe: { x: 34, y: 596, width: 302 },
+  replay: { x: 34, y: 596, width: 234 },
+  numbers: { x: 34, y: 596, width: 314 },
+};
 
 export function ChallengeScreen({
   challenge,
@@ -69,18 +85,10 @@ export function ChallengeScreen({
   onFinish: () => void;
 }) {
   const base = LAYOUTS[challenge.composition];
-  /** Fase 2: mesma estrutura, com balão mais compacto/alto e Mara um pouco menor. */
-  const layout: Layout = challenge.compact
-    ? {
-        ...base,
-        mara: { ...base.mara, height: Math.round(base.mara.height * 0.9) },
-        bubble: base.bubble
-          ? challenge.composition === "C"
-            ? { ...base.bubble, x: 262, y: 572, width: 600 }
-            : { ...base.bubble, x: base.bubble.x - 12, y: base.bubble.y - 8, width: base.bubble.width + 12 }
-          : null,
-      }
-    : base;
+  const layout: Layout = challenge.compact ? COMPACT_LAYOUT : base;
+  const nav = challenge.compact ? COMPACT_NAV : NAV;
+  const control = challenge.compact ? COMPACT_CONTROL : CONTROL;
+
   const { after, clearInteractionTimers } = useInteractionTimers();
   const { speak, stop } = useNarration(challenge.id);
 
@@ -308,9 +316,9 @@ export function ChallengeScreen({
         <ControlButton
           label={challenge.observe.button}
           onClick={startRemoval}
-          x={CONTROL.observe.x}
-          y={CONTROL.observe.y}
-          width={CONTROL.observe.width}
+          x={control.observe.x}
+          y={control.observe.y}
+          width={control.observe.width}
         />
       )}
 
@@ -318,9 +326,9 @@ export function ChallengeScreen({
         <ControlButton
           label="Ver novamente"
           onClick={replayRemovalAnimation}
-          x={CONTROL.replay.x}
-          y={CONTROL.replay.y}
-          width={CONTROL.replay.width}
+          x={control.replay.x}
+          y={control.replay.y}
+          width={control.replay.width}
         />
       )}
 
@@ -328,14 +336,14 @@ export function ChallengeScreen({
         <ControlButton
           label="Mostrar com números"
           onClick={() => setStep("numbers")}
-          x={CONTROL.numbers.x}
-          y={CONTROL.numbers.y}
-          width={CONTROL.numbers.width}
+          x={control.numbers.x}
+          y={control.numbers.y}
+          width={control.numbers.width}
         />
       )}
 
       {step === "success" && !challenge.numbers && (
-        <ImageNavButton kind="next" label="Seguir" onClick={onFinish} x={NAV.x} y={NAV.y} width={NAV.width} />
+        <ImageNavButton kind="next" label="Seguir" onClick={onFinish} x={nav.x} y={nav.y} width={nav.width} />
       )}
 
       {step === "numbers" && challenge.numbers && (
@@ -350,7 +358,7 @@ export function ChallengeScreen({
             fontSize={44}
           />
 
-          <ImageNavButton kind="next" label="Seguir" onClick={onFinish} x={NAV.x} y={NAV.y} width={NAV.width} />
+          <ImageNavButton kind="next" label="Seguir" onClick={onFinish} x={nav.x} y={nav.y} width={nav.width} />
         </>
       )}
     </GameScreen>

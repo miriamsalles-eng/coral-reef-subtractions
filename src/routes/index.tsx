@@ -41,6 +41,10 @@ type Stage =
 
 function Index() {
   const [stage, setStage] = useState<Stage>({ kind: "cover" });
+  // TEMP-DEBUG
+  if (typeof window !== "undefined") {
+    (window as unknown as { __setStage?: unknown }).__setStage = setStage;
+  }
 
   const advance = useCallback(() => {
     setStage((current) => {
