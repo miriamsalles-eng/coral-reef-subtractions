@@ -65,7 +65,7 @@ const CONTROL = {
  * logo ABAIXO da cena (nunca sobre os animais) e Mara/balão/botões na base.
  */
 const COMPACT_LAYOUT: Layout = {
-  mara: { x: 1004, height: 236, bottom: -6, facing: "left" },
+  mara: { x: 952, height: 236, bottom: -6, facing: "left" },
   bubble: { x: 596, y: 556, width: 392, tailSide: "right" },
   answers: { x: 344, y: 424, width: 560 },
   operation: { x: 46, y: 424, width: 272 },
