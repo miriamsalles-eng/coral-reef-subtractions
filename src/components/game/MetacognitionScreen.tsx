@@ -99,7 +99,7 @@ export function MetacognitionScreen({ onFinish }: { onFinish: () => void }) {
         width={q.operation ? 900 : 860}
         height={q.operation ? 42 : 62}
         gap={8}
-        note={done ? q.sceneNote : undefined}
+        {...(done ? { note: q.sceneNote } : {})}
       />
 
       {q.operation && (
