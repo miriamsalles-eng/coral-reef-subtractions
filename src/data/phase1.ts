@@ -25,7 +25,7 @@ export const TUTORIAL: Challenge = {
   poses: { observe: "presenting", ask: "pointing", success: "feedback" },
   observe: {
     prompt: "Veja os peixes no recife.",
-    mara: "Olhe com calma: quantos peixes estão por aqui? Depois, veja o que acontece!.",
+    mara: "Olhe com calma: quantos peixes estão por aqui? Depois, veja o que acontece!",
     button: "Ver o que acontece",
   },
   ask: {
