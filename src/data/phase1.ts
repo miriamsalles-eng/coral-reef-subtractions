@@ -75,7 +75,7 @@ export const PHASE1: Challenge[] = [
       prompt: quantosFicaram("fish"),
       answer: { mode: "number", options: nums([3, 4, 5]), correct: 4 },
     },
-    success: { mara: `${havia("fish", 5)}, ${saiu("fish", 1)} e ${ficou("fish", 4)}.` },
+    success: { mara: `${havia("fish", 5)}, 1 peixe sai e ${ficou("fish", 4)}.` },
     numbers: { a: 5, b: 1, result: 4, mara: "Um peixe saiu: por isso tiramos 1 de 5." },
     hints: ["Conte os peixes que ficaram na cena.", "Comece do 5 e volte um peixe."],
   },
@@ -101,7 +101,7 @@ export const PHASE1: Challenge[] = [
     poses: { observe: "presenting", ask: "pointing", success: "feedback" },
     observe: {
       prompt: `Observe: ${havia("fish", 6).toLowerCase()} no recife.`,
-      mara: "Aguns peixes vão sair para procurar alimento.",
+      mara: "Alguns peixes vão sair para procurar alimento.",
       button: "Ver o que acontece",
     },
     ask: {
@@ -141,7 +141,7 @@ export const PHASE1: Challenge[] = [
       prompt: quantosFicaram("fish"),
       answer: { mode: "number", options: nums([4, 5, 6]), correct: 5 },
     },
-    success: { mara: `${havia("fish", 8)}, ${saiu("fish", 3)} e ${ficou("fish", 5)}.` },
+    success: { mara: `${havia("fish", 8)}. 3 peixes saíram e ${ficou("fish", 5)}.` },
     numbers: { a: 8, b: 3, result: 5, mara: "De 8 peixes tiramos 3 e sobraram 5." },
     hints: ["Conte os peixes que ficaram na cena.", "Foram três peixes que nadaram para longe."],
   },
@@ -172,7 +172,7 @@ export const PHASE1: Challenge[] = [
     },
     observe: {
       prompt: "Veja o que acontece.",
-      mara: "Seré que alguém vai sair?",
+      mara: "Será que alguém vai sair?",
       button: "Ver o que acontece",
     },
     ask: {
@@ -180,7 +180,7 @@ export const PHASE1: Challenge[] = [
       answer: { mode: "number", options: nums([9, 10, 11]), correct: 10 },
     },
     success: { mara: `${havia("fish", 12)}, ${saiu("fish", 2)} e ficou o grupo de 10 peixes.` },
-    numbers: { a: 12, b: 2, result: 10, mara: "Saíram os 2 peixes separados e ficou o grupo de 10." },
+    numbers: { a: 12, b: 2, result: 10, mara: "Saíram os 2 peixes e ficou o grupo de 10." },
     hints: ["Use o grupo de 10 para ajudar.", "Os peixes que não estavam no grupo saíram. Quantos peixes o grupo tem?"],
   },
   {
@@ -217,7 +217,7 @@ export const PHASE1: Challenge[] = [
       prompt: quantosFicaram("fish"),
       answer: { mode: "number", options: nums([11, 12, 13]), correct: 12 },
     },
-    success: { mara: `${havia("fish", 16)}, ${saiu("fish", 4)} e ${ficou("fish", 12)}.` },
+    success: { mara: `${havia("fish", 16)}. ${saiu("fish", 4)} e ${ficou("fish", 12)}.` },
     numbers: { a: 16, b: 4, result: 12, mara: "O grupo de 10 ficou inteiro e sobraram 2 separados." },
     hints: ["Use o grupo de 10 para ajudar.", "Conte o grupo de 10 e depois os peixes separados que ficaram."],
   },
