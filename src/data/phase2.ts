@@ -32,6 +32,7 @@ export const PHASE2: Challenge[] = [
     },
     ask: {
       prompt: quantosFicaram("seahorse"),
+      mara: "Veja quais saíram e conte quantos ficaram.",
       answer: { mode: "number", options: nums([3, 4, 5]), correct: 4 },
     },
     success: {
@@ -69,6 +70,7 @@ export const PHASE2: Challenge[] = [
 
     ask: {
       prompt: "Complete o que aconteceu.",
+      mara: "Observe a cena e compare com a conta.",
       answer: { mode: "number", options: nums([6, 7, 8]), correct: 7 },
       operation: { a: 9, b: 2 },
     },
@@ -115,6 +117,7 @@ export const PHASE2: Challenge[] = [
 
     ask: {
       prompt: "Qual conta mostra o que aconteceu?",
+      mara: "Compare a cena com as contas.",
       answer: {
         mode: "operation",
         options: [
