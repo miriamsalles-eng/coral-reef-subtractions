@@ -106,7 +106,6 @@ export const PHASE2: Challenge[] = [
       exit: "swim",
     },
     sceneNote: "No início: 14 animais",
-    sceneNoteObserve: "10 peixes + 4 cavalos-marinhos",
     compact: true,
     poses: { observe: "presenting", ask: "thinking", success: "celebrating" },
     observe: {
