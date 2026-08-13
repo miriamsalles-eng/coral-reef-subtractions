@@ -185,13 +185,17 @@ export function AnimalScene({
         return (
           <div
             key={item.key}
-            className="absolute"
+            className={
+              gone
+                ? "absolute rounded-2xl border-[3px] border-dashed border-reef-coral bg-reef-coral/20 opacity-55"
+                : "absolute"
+            }
             style={{
-              left: item.x - w / 2,
-              top: item.y - item.h / 2,
-              width: w,
-              height: item.h,
-              display: gone ? "none" : undefined,
+              left: item.x - w / 2 - (gone ? 4 : 0),
+              top: item.y - item.h / 2 - (gone ? 14 : 0),
+              width: w + (gone ? 8 : 0),
+              height: item.h + (gone ? 8 : 0),
+              transform: gone ? "scale(0.92)" : undefined,
               ["--dx" as string]: `${dx}px`,
               ["--dy" as string]: `${dy}px`,
               animation:
@@ -204,11 +208,11 @@ export function AnimalScene({
               src={a.url}
               alt=""
               draggable={false}
-              className="animate-bob h-full w-full select-none"
+              className={gone ? "h-full w-full select-none" : "animate-bob h-full w-full select-none"}
               style={{
-                animationDelay: `${(idx % 5) * 0.4}s`,
+                animationDelay: gone ? undefined : `${(idx % 5) * 0.4}s`,
                 transform: goesLeft ? "scaleX(-1)" : undefined,
-                filter: "drop-shadow(0 6px 8px rgb(0 0 0 / 0.15))",
+                filter: gone ? "grayscale(0.35)" : "drop-shadow(0 6px 8px rgb(0 0 0 / 0.15))",
               }}
             />
           </div>

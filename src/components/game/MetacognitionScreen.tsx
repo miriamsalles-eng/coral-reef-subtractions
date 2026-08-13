@@ -95,11 +95,11 @@ export function MetacognitionScreen({ onFinish }: { onFinish: () => void }) {
       <StaticScene
         groups={q.groups}
         x={q.operation ? 150 : 180}
-        y={q.operation ? 84 : 110}
+        y={q.operation ? 76 : 110}
         width={q.operation ? 900 : 860}
-        height={q.operation ? 42 : 62}
+        height={q.operation ? 60 : 62}
         gap={8}
-        note={q.sceneNote}
+        {...(done ? { note: q.sceneNote } : {})}
       />
 
       {q.operation && (
