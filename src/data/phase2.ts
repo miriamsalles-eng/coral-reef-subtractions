@@ -55,7 +55,7 @@ export const PHASE2: Challenge[] = [
     composition: "C",
     scene: {
       units: [{ species: "starfish", count: 9 }],
-      leaving: [{ species: "starfish", count: 4 }],
+      leaving: [{ species: "starfish", count: 2 }],
       layout: "grid",
       exit: "drift",
     },
@@ -69,11 +69,11 @@ export const PHASE2: Challenge[] = [
 
     ask: {
       prompt: "Complete o que aconteceu.",
-      answer: { mode: "number", options: nums([4, 5, 6]), correct: 5 },
-      operation: { a: 9, b: 4 },
+      answer: { mode: "number", options: nums([6, 7, 8]), correct: 7 },
+      operation: { a: 9, b: 2 },
     },
     success: {
-      mara: `${havia("starfish", 9)}, ${saiu("starfish", 4)} com a corrente e ${ficou("starfish", 5)}.`,
+      mara: `${havia("starfish", 9)}, ${saiu("starfish", 2)} com a corrente e ${ficou("starfish", 7)}.`,
     },
     hints: [
       "Observe novamente as estrelas que a corrente levou.",
