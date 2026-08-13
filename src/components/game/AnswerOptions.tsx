@@ -31,8 +31,8 @@ export function AnswerOptions({
   width: number;
   size?: "number" | "operation" | "text";
 }) {
-  const fontSize = size === "number" ? 48 : size === "operation" ? 42 : 26;
-  const padX = size === "number" ? 0 : 20;
+  const fontSize = size === "number" ? 48 : size === "operation" ? 34 : 26;
+  const padX = size === "number" ? 0 : size === "operation" ? 10 : 20;
   const minW = size === "number" ? 128 : 0;
 
   return (
