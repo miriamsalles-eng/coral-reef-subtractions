@@ -60,15 +60,16 @@ export function SynthesisScreen({ onFinish }: { onFinish: () => void }) {
       </div>
 
       <StaticScene
-        groups={[{ species: "fish-yellow", count: 8, leaving: 3 }]}
-        x={300}
+        groups={[{ species: "fish-yellow", count: 10, leaving: 3 }]}
+        x={260}
         y={244}
-        width={800}
-        height={58}
-        note="8 peixes — 3 saíram — ficaram 5"
+        width={880}
+        height={54}
+        note="10 peixes — 3 saíram — ficaram 7"
       />
 
-      <Operation a={8} b={3} result={5} x={430} y={366} width={340} />
+      <Operation a={10} b={3} result={7} x={430} y={366} width={340} />
+
 
       <Mara
         pose={line === 0 ? "presenting1" : "celebrating"}
