@@ -75,7 +75,7 @@ export const PHASE1: Challenge[] = [
       prompt: quantosFicaram("fish"),
       answer: { mode: "number", options: nums([3, 4, 5]), correct: 4 },
     },
-    success: { mara: `${havia("fish", 5)}, 1 peixe sai e ${ficou("fish", 4)}.` },
+    success: { mara: `${havia("fish", 5)}. 1 peixe saiu e ${ficou("fish", 4)}.` },
     numbers: { a: 5, b: 1, result: 4, mara: "Um peixe saiu: por isso tiramos 1 de 5." },
     hints: ["Conte os peixes que ficaram na cena.", "Comece do 5 e volte um peixe."],
   },
