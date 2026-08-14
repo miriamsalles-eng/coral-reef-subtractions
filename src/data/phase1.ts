@@ -1,5 +1,5 @@
 import type { Challenge } from "./types";
-import { ficou, havia, MINUS, quantosFicaram, saiu } from "@/lib/pt";
+import { ficou, havia, MINUS, quantosFicaram } from "@/lib/pt";
 
 const PHASE = "Fase 1";
 const SECTION = "Os peixes do recife";
@@ -32,7 +32,7 @@ export const TUTORIAL: Challenge = {
     prompt: quantosFicaram("fish"),
     answer: { mode: "number", options: nums([2, 3, 4]), correct: 2 },
   },
-  success: { mara: `Isso mesmo! ${havia("fish", 5)}. 1 peixe saiu e ${ficou("fish", 2)}.` },
+  success: { mara: `Isso mesmo! ${ficou("fish", 2)}.` },
   numbers: {
     a: 3,
     b: 1,
@@ -65,6 +65,10 @@ export const PHASE1: Challenge[] = [
       mara: "Conte com calma e escolha o número.",
       answer: { mode: "number", options: nums([4, 5, 6]), correct: 5 },
       success: "Muito bem! São 5 peixes.",
+      retries: [
+        "Conte novamente todos os peixes da cena.",
+        "Comece pelo primeiro peixe e conte um por um.",
+      ],
     },
     observe: {
       prompt: "Veja o que acontece.",
@@ -75,7 +79,7 @@ export const PHASE1: Challenge[] = [
       prompt: quantosFicaram("fish"),
       answer: { mode: "number", options: nums([3, 4, 5]), correct: 4 },
     },
-    success: { mara: `${havia("fish", 5)}. 1 peixe saiu e ${ficou("fish", 4)}.` },
+    success: { mara: `Isso! ${ficou("fish", 4)}.` },
     numbers: { a: 5, b: 1, result: 4, mara: "Um peixe saiu: por isso tiramos 1 de 5." },
     hints: ["Conte os peixes que ficaram na cena.", "Comece do 5 e volte um peixe."],
   },
@@ -108,7 +112,7 @@ export const PHASE1: Challenge[] = [
       prompt: quantosFicaram("fish"),
       answer: { mode: "number", options: nums([3, 4, 5]), correct: 4 },
     },
-    success: { mara: `${havia("fish", 6)}, ${saiu("fish", 2)} e ${ficou("fish", 4)}.` },
+    success: { mara: `Muito bem! ${ficou("fish", 4)}.` },
     numbers: { a: 6, b: 2, result: 4, mara: "Saíram dois peixes: tiramos 2 de 6." },
     hints: ["Observe novamente os peixes que saíram.", "Conte só os peixes que continuam na cena."],
   },
@@ -141,7 +145,7 @@ export const PHASE1: Challenge[] = [
       prompt: quantosFicaram("fish"),
       answer: { mode: "number", options: nums([4, 5, 6]), correct: 5 },
     },
-    success: { mara: `${havia("fish", 8)}. 3 peixes saíram e ${ficou("fish", 5)}.` },
+    success: { mara: `Isso! ${ficou("fish", 5)}.` },
     numbers: { a: 8, b: 3, result: 5, mara: "De 8 peixes tiramos 3 e sobraram 5." },
     hints: ["Conte os peixes que ficaram na cena.", "Foram três peixes que nadaram para longe."],
   },
@@ -168,7 +172,11 @@ export const PHASE1: Challenge[] = [
       prompt: "Quantos peixes há ao todo?",
       mara: "Comece pelo grupo de 10 e conte também os fora do grupo.",
       answer: { mode: "number", options: nums([11, 12, 13]), correct: 12 },
-      success: "Isso! O grupo de 10 e mais os 2 peixes são 12.",
+      success: "Isso! São 10 peixes no grupo e mais 2 fora dele: 12 ao todo.",
+      retries: [
+        "Comece pelo grupo de 10.",
+        "Depois do grupo de 10, conte também os 2 peixes que estão fora dele.",
+      ],
     },
     observe: {
       prompt: "Veja o que acontece.",
@@ -179,7 +187,7 @@ export const PHASE1: Challenge[] = [
       prompt: quantosFicaram("fish"),
       answer: { mode: "number", options: nums([9, 10, 11]), correct: 10 },
     },
-    success: { mara: `${havia("fish", 12)}, ${saiu("fish", 2)} e ficou o grupo de 10 peixes.` },
+    success: { mara: `Muito bem! ${ficou("fish", 10)}.` },
     numbers: { a: 12, b: 2, result: 10, mara: "Saíram os 2 peixes e ficou o grupo de 10." },
     hints: ["Use o grupo de 10 para ajudar.", "Os peixes que não estavam no grupo saíram. Quantos peixes o grupo tem?"],
   },
@@ -206,7 +214,11 @@ export const PHASE1: Challenge[] = [
       prompt: "Quantos peixes há ao todo?",
       mara: "Use o grupo de 10 para ajudar na contagem.",
       answer: { mode: "number", options: nums([15, 16, 17]), correct: 16 },
-      success: "Muito bem! 10 no grupo e 6 separados são 16.",
+      success: "Muito bem! São 10 peixes no grupo e mais 6 fora dele: 16 ao todo.",
+      retries: [
+        "Use o grupo de 10 para começar.",
+        "Depois, conte também os 6 peixes que estão fora do grupo.",
+      ],
     },
     observe: {
       prompt: "Veja o que acontece.",
@@ -217,8 +229,8 @@ export const PHASE1: Challenge[] = [
       prompt: quantosFicaram("fish"),
       answer: { mode: "number", options: nums([11, 12, 13]), correct: 12 },
     },
-    success: { mara: `${havia("fish", 16)}, ${saiu("fish", 4)} e ${ficou("fish", 12)}.` },
-    numbers: { a: 16, b: 4, result: 12, mara: "O grupo de 10 ficou inteiro e sobraram 2 separados." },
+    success: { mara: `Isso! ${ficou("fish", 12)}.` },
+    numbers: { a: 16, b: 4, result: 12, mara: "Ficou o grupo de 10 e mais 2 peixes." },
     hints: ["Use o grupo de 10 para ajudar.", "Conte o grupo de 10 e depois os peixes separados que ficaram."],
   },
 ];

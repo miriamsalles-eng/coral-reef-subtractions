@@ -183,16 +183,24 @@ export function ChallengeScreen({
     }
   };
 
-  const hint = hintIndex >= 0 ? challenge.hints[Math.min(hintIndex, challenge.hints.length - 1)] : null;
+  const pickMessage = (list: string[] | undefined, i: number) =>
+    list && list.length > 0 ? list[Math.min(i, list.length - 1)] : null;
+
+  /** Retomadas da subtração (após a retirada). */
+  const hint = hintIndex >= 0 ? pickMessage(challenge.hints, hintIndex) : null;
+  /** Retomadas exclusivas da contagem inicial — nunca falam de retirada. */
+  const countHint = hintIndex >= 0 ? pickMessage(challenge.countStep?.retries, hintIndex) : null;
 
   const { prompt, maraText, pose, tone } = useMemo(() => {
     switch (step) {
       case "count":
         return {
           prompt: challenge.countStep!.prompt,
-          maraText: countDone ? challenge.countStep!.success : (hint ?? challenge.countStep!.mara),
+          maraText: countDone
+            ? challenge.countStep!.success
+            : (countHint ?? challenge.countStep!.mara),
           pose: countDone ? challenge.poses.success : challenge.poses.observe,
-          tone: countDone ? ("correct" as const) : hint ? ("retry" as const) : ("hint" as const),
+          tone: countDone ? ("correct" as const) : countHint ? ("retry" as const) : ("hint" as const),
         };
       case "observe":
         return {
@@ -231,7 +239,7 @@ export function ChallengeScreen({
           tone: "correct" as const,
         };
     }
-  }, [step, hint, countDone, challenge]);
+  }, [step, hint, countHint, countDone, challenge]);
 
   const showAnswers = step === "count" || step === "ask" || step === "success";
   const answerSpec = step === "count" ? challenge.countStep!.answer : challenge.ask.answer;

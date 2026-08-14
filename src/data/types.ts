@@ -29,7 +29,14 @@ export interface Challenge {
   compact?: boolean;
   poses: { observe: MaraPose; ask: MaraPose; success: MaraPose };
   /** Etapa opcional: contar quantos há antes da retirada. */
-  countStep?: { prompt: string; mara?: string; answer: AnswerSpec; success: string };
+  countStep?: {
+    prompt: string;
+    mara?: string;
+    answer: AnswerSpec;
+    success: string;
+    /** Retomadas próprias da contagem inicial (nunca falam de retirada). */
+    retries?: string[];
+  };
   observe: { prompt: string; mara?: string; button: string };
   ask: {
     prompt: string;
