@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef } from "react";
 import { narrationUrl } from "@/data/audio";
+import { VOICE_CONFIG, getMaraVoice, primeMaraVoice } from "@/lib/voice";
 
 /**
  * Narração das falas de Mara.

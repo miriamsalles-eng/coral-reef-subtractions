@@ -5,7 +5,7 @@ import { ImageNavButton } from "./NavButton";
 export function CoverScreen({ onStart }: { onStart: () => void }) {
   return (
     <GameScreen background="cover" ambient={false}>
-      <ImageNavButton kind="start" label="Iniciar" onClick={onStart} x={982} y={568} width={182} />
+      <ImageNavButton kind="start" label="Iniciar" onClick={onStart} x={900} y={520} width={250} />
     </GameScreen>
   );
 }
