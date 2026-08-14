@@ -217,7 +217,7 @@ export const PHASE1: Challenge[] = [
       prompt: quantosFicaram("fish"),
       answer: { mode: "number", options: nums([11, 12, 13]), correct: 12 },
     },
-    success: { mara: `${havia("fish", 16)}. ${saiu("fish", 4)} e ${ficou("fish", 12)}.` },
+    success: { mara: `${havia("fish", 16)}, ${saiu("fish", 4)} e ${ficou("fish", 12)}.` },
     numbers: { a: 16, b: 4, result: 12, mara: "O grupo de 10 ficou inteiro e sobraram 2 separados." },
     hints: ["Use o grupo de 10 para ajudar.", "Conte o grupo de 10 e depois os peixes separados que ficaram."],
   },
