@@ -239,7 +239,7 @@ export function ChallengeScreen({
           tone: "correct" as const,
         };
     }
-  }, [step, hint, countDone, challenge]);
+  }, [step, hint, countHint, countDone, challenge]);
 
   const showAnswers = step === "count" || step === "ask" || step === "success";
   const answerSpec = step === "count" ? challenge.countStep!.answer : challenge.ask.answer;
