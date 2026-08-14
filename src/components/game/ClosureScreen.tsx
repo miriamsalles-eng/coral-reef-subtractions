@@ -7,7 +7,7 @@ import { useNarration } from "@/lib/useNarration";
 const TITLE = "Você conseguiu!";
 const LINES = [
   "Você observou, contou e descobriu quantos ficaram.",
-  "Agora já sabe usar a subtração para mostrar o que foi retirado.",
+  "Agora já sabe usar a subtração para descobrir quantos ficaram.",
 ];
 const MARA_LINE = "Obrigada por explorar o recife comigo. Quer brincar de novo?";
 
