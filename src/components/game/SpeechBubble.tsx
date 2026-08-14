@@ -12,6 +12,7 @@ export function SpeechBubble({
   text,
   x,
   y,
+  bottom,
   width,
   tailSide = "left",
   onSpeak,
@@ -19,7 +20,14 @@ export function SpeechBubble({
 }: {
   text: string;
   x: number;
-  y: number;
+  /** topo do balão; ignorado quando `bottom` é informado */
+  y?: number;
+  /**
+   * Ancoragem pela base do balão (distância até a base do canvas).
+   * A altura cresce para cima, garantindo que o balão nunca seja cortado
+   * quando o texto ocupa 2 ou 3 linhas.
+   */
+  bottom?: number;
   width: number;
   /** lado do balão em que Mara está */
   tailSide?: "left" | "right";
@@ -36,7 +44,7 @@ export function SpeechBubble({
   return (
     <div
       className={`animate-soft-in absolute rounded-3xl border-4 bg-bubble px-5 py-4 shadow-[0_10px_24px_rgb(0_0_0_/_0.18)] ${toneRing}`}
-      style={{ left: x, top: y, width }}
+      style={bottom !== undefined ? { left: x, bottom, width } : { left: x, top: y, width }}
     >
       <div className="flex items-start gap-3">
         <p
