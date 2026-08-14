@@ -43,3 +43,8 @@ export const MINUS = "−";
 export function operationText(a: number, b: number, r: number | string): string {
   return `${a} ${MINUS} ${b} = ${r}`;
 }
+
+/** Maiúscula inicial — usar ao iniciar nova frase com um fragmento gerado. */
+export function capitalizeFirst(text: string): string {
+  return text.charAt(0).toUpperCase() + text.slice(1);
+}
