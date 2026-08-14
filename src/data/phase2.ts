@@ -1,5 +1,5 @@
 import type { Challenge } from "./types";
-import { ficou, havia, quantosFicaram, saiu } from "@/lib/pt";
+import { havia, quantosFicaram } from "@/lib/pt";
 
 const PHASE = "Fase 2";
 const SECTION = "Explorando o recife";
@@ -36,7 +36,7 @@ export const PHASE2: Challenge[] = [
       answer: { mode: "number", options: nums([3, 4, 5]), correct: 4 },
     },
     success: {
-      mara: `${havia("seahorse", 7)}, ${saiu("seahorse", 3)} para trás dos corais e ${ficou("seahorse", 4)}.`,
+      mara: "Isso! Ficaram 4 cavalos-marinhos.",
     },
     numbers: { a: 7, b: 3, result: 4, mara: "A mesma ideia dos peixes serve aqui também." },
     hints: [
@@ -75,7 +75,7 @@ export const PHASE2: Challenge[] = [
       operation: { a: 9, b: 2 },
     },
     success: {
-      mara: `${havia("starfish", 9)}, ${saiu("starfish", 2)} com a corrente e ${ficou("starfish", 7)}.`,
+      mara: "Muito bem! Ficaram 7 estrelas-do-mar.",
     },
     hints: [
       "Observe novamente as estrelas que a corrente levou.",
@@ -128,7 +128,7 @@ export const PHASE2: Challenge[] = [
       },
     },
     success: {
-      mara: "Havia 14 animais, 5 saíram e ficaram 9.",
+      mara: "Isso! Ficaram 9 animais.",
     },
 
     hints: [

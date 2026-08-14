@@ -16,7 +16,14 @@ type Step = "count" | "observe" | "pause" | "animating" | "ask" | "success" | "n
 
 interface Layout {
   mara: { x: number; height: number; bottom: number; facing: "left" | "right" };
-  bubble: { x: number; y: number; width: number; tailSide: "left" | "right" } | null;
+  bubble: {
+    x: number;
+    y?: number;
+    /** ancoragem pela base — o balão cresce para cima e nunca é cortado */
+    bottom?: number;
+    width: number;
+    tailSide: "left" | "right";
+  } | null;
   answers: { x: number; y: number; width: number };
   /** operação alinhada ao balão (mesma coluna) quando ambos aparecem */
   operation: { x: number; y: number; width: number };
@@ -64,9 +71,27 @@ const CONTROL = {
  * Fase 2: enunciado no topo, animais no centro, operação e alternativas
  * logo ABAIXO da cena (nunca sobre os animais) e Mara/balão/botões na base.
  */
+/**
+ * Zona reservada ao conjunto balão + botão de áudio na Fase 2.
+ * Ancorada pela BASE: o balão cresce para cima conforme o texto,
+ * mantendo ~56 px de margem inferior e ~250 px de distância horizontal
+ * do botão "Mostrar com números" (x 34–348).
+ */
+const PHASE2_FEEDBACK_SAFE_ZONE = {
+  x: 590,
+  width: 400,
+  bottom: 40,
+  tailSide: "right" as const,
+};
+
 const COMPACT_LAYOUT: Layout = {
   mara: { x: 952, height: 236, bottom: -6, facing: "left" },
-  bubble: { x: 596, y: 556, width: 392, tailSide: "right" },
+  bubble: {
+    x: PHASE2_FEEDBACK_SAFE_ZONE.x,
+    bottom: PHASE2_FEEDBACK_SAFE_ZONE.bottom,
+    width: PHASE2_FEEDBACK_SAFE_ZONE.width,
+    tailSide: PHASE2_FEEDBACK_SAFE_ZONE.tailSide,
+  },
   answers: { x: 344, y: 424, width: 560 },
   operation: { x: 46, y: 424, width: 272 },
 };
@@ -225,7 +250,7 @@ export function ChallengeScreen({
 
   // Na etapa "mostrar com números" os três elementos formam um conjunto horizontal.
   const maraSpec = isNumbers ? NUMBERS_GROUP.mara : layout.mara;
-  const bubbleSpec = isNumbers ? NUMBERS_GROUP.bubble : layout.bubble;
+  const bubbleSpec: Layout["bubble"] = isNumbers ? NUMBERS_GROUP.bubble : layout.bubble;
   const bubbleY =
     !isNumbers && !challenge.compact && askOperation && challenge.composition === "C"
       ? 592
@@ -279,7 +304,9 @@ export function ChallengeScreen({
         <SpeechBubble
           text={maraText}
           x={bubbleSpec.x}
-          y={bubbleY ?? bubbleSpec.y}
+          {...(bubbleSpec.bottom !== undefined
+            ? { bottom: bubbleSpec.bottom }
+            : { y: bubbleY ?? 0 })}
           width={bubbleSpec.width}
           tailSide={bubbleSpec.tailSide}
           tone={tone}
