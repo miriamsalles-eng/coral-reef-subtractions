@@ -32,7 +32,7 @@ export const TUTORIAL: Challenge = {
     prompt: quantosFicaram("fish"),
     answer: { mode: "number", options: nums([2, 3, 4]), correct: 2 },
   },
-  success: { mara: `Isso mesmo! x.` },
+  success: { mara: `Isso mesmo! ${capitalizeFirst(ficou("fish", 2))}.` },
   numbers: {
     a: 3,
     b: 1,
