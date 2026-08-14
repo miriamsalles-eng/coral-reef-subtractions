@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef } from "react";
 import { narrationUrl } from "@/data/audio";
+import { VOICE_CONFIG, getMaraVoice, primeMaraVoice } from "@/lib/voice";
 
 /**
  * Narração das falas de Mara.
@@ -20,6 +21,10 @@ export function useNarration(screenKey: string) {
   }, []);
 
   useEffect(() => {
+    primeMaraVoice();
+  }, []);
+
+  useEffect(() => {
     stop();
     return stop;
   }, [screenKey, stop]);
@@ -36,7 +41,10 @@ export function useNarration(screenKey: string) {
       }
       if (typeof window !== "undefined" && "speechSynthesis" in window) {
         const utter = new SpeechSynthesisUtterance(text);
-        utter.lang = "pt-BR";
+        utter.lang = VOICE_CONFIG.preferredVoiceLang;
+        // Preferência por voz feminina pt-BR; se não houver, o navegador usa o padrão.
+        const voice = getMaraVoice();
+        if (voice) utter.voice = voice;
         utter.rate = 0.92;
         utter.pitch = 1.15;
         window.speechSynthesis.speak(utter);

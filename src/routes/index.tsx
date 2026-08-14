@@ -4,6 +4,7 @@ import { GameCanvas } from "@/components/game/GameCanvas";
 import { ChallengeScreen } from "@/components/game/ChallengeScreen";
 import { StoryScreen } from "@/components/game/StoryScreen";
 import { CoverScreen } from "@/components/game/CoverScreen";
+import { ClosureScreen } from "@/components/game/ClosureScreen";
 import { IntroScreen } from "@/components/game/IntroScreen";
 import { MetacognitionScreen } from "@/components/game/MetacognitionScreen";
 import { SynthesisScreen } from "@/components/game/SynthesisScreen";
@@ -110,23 +111,7 @@ function Index() {
       case "metacognition":
         return <MetacognitionScreen onFinish={advance} />;
       case "closure":
-        return (
-          <StoryScreen
-            id="closure"
-            narrationId="encerramento"
-            background="final"
-            title="Você conseguiu!"
-            lines={[
-              "Você observou, contou e descobriu quantos ficaram.",
-              "Agora sabe usar a subtração para mostrar o que foi retirado.",
-            ]}
-            mara="Obrigada por explorar o recife comigo. Quer brincar de novo?"
-            pose="celebrating"
-            buttonKind="restart"
-            buttonLabel="Recomeçar"
-            onNext={advance}
-          />
-        );
+        return <ClosureScreen onRestart={advance} />;
     }
   }, [stage, advance]);
 
