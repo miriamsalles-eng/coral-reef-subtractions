@@ -1,5 +1,5 @@
 import type { Challenge } from "./types";
-import { ficou, havia, MINUS, quantosFicaram, saiu } from "@/lib/pt";
+import { ficou, havia, MINUS, quantosFicaram } from "@/lib/pt";
 
 const PHASE = "Fase 1";
 const SECTION = "Os peixes do recife";
