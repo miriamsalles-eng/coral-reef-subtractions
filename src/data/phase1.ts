@@ -210,7 +210,7 @@ export const PHASE1: Challenge[] = [
     },
     observe: {
       prompt: "Veja o que acontece.",
-      mara: "Seré que alguém vai nadar para longe?",
+      mara: "Será que alguém vai nadar para longe?",
       button: "Ver o que acontece",
     },
     ask: {
