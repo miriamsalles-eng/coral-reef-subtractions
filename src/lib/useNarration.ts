@@ -21,6 +21,10 @@ export function useNarration(screenKey: string) {
   }, []);
 
   useEffect(() => {
+    primeMaraVoice();
+  }, []);
+
+  useEffect(() => {
     stop();
     return stop;
   }, [screenKey, stop]);
