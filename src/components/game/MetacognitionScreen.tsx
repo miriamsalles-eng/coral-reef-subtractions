@@ -27,7 +27,7 @@ const SITUATIONS: Situation[] = [
     prompt: "Qual conta mostra o que aconteceu?",
     mara: "Veja quantos animais havia, quais saíram e quantos ficaram.",
     groups: [{ species: "fish-yellow", count: 9, leaving: 3 }],
-    sceneNote: "Havia 9 animais — 3 saíram — ficaram 6",
+    sceneNote: "",
     options: [
       { value: "9-3", label: "9 − 3 = 6", ariaLabel: "9 menos 3 é igual a 6" },
       { value: "9+3", label: "9 + 3 = 12", ariaLabel: "9 mais 3 é igual a 12" },
@@ -99,7 +99,7 @@ export function MetacognitionScreen({ onFinish }: { onFinish: () => void }) {
         width={q.operation ? 900 : 860}
         height={q.operation ? 60 : 62}
         gap={8}
-        {...(done ? { note: q.sceneNote } : {})}
+        {...(done && q.sceneNote ? { note: q.sceneNote } : {})}
       />
 
       {q.operation && (

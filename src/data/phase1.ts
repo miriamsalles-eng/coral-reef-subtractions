@@ -104,7 +104,7 @@ export const PHASE1: Challenge[] = [
     },
     poses: { observe: "presenting", ask: "pointing", success: "feedback" },
     observe: {
-      prompt: `Observe: ${havia("fish", 6).toLowerCase()} no recife.`,
+      prompt: "Observe: há 6 peixes no recife.",
       mara: "Alguns peixes vão sair para procurar alimento.",
       button: "Ver o que acontece",
     },
@@ -137,7 +137,7 @@ export const PHASE1: Challenge[] = [
     },
     poses: { observe: "presenting1", ask: "pointing", success: "feedback" },
     observe: {
-      prompt: `Observe: ${havia("fish", 8).toLowerCase()} no recife.`,
+      prompt: "Observe: há 8 peixes no recife.",
       mara: "Alguns peixes vão sair, um depois do outro.",
       button: "Ver o que acontece",
     },

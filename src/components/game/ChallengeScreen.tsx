@@ -393,7 +393,8 @@ export function ChallengeScreen({
             fontSize={44}
           />
 
-          <ImageNavButton kind="next" label="Seguir" onClick={onFinish} x={nav.x} y={nav.y} width={nav.width} />
+          {/* SEGUIR sempre no canto inferior direito nesta etapa. */}
+          <ImageNavButton kind="next" label="Seguir" onClick={onFinish} x={NAV.x} y={NAV.y} width={NAV.width} />
         </>
       )}
     </GameScreen>
