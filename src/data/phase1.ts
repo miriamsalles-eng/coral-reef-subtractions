@@ -1,5 +1,5 @@
 import type { Challenge } from "./types";
-import { capitalizeFirst, ficou, havia, MINUS, quantosFicaram } from "@/lib/pt";
+import { capitalizeFirst, ficou, MINUS, quantosFicaram } from "@/lib/pt";
 
 const PHASE = "Fase 1";
 const SECTION = "Os peixes do recife";

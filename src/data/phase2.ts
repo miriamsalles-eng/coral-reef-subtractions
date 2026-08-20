@@ -1,5 +1,5 @@
 import type { Challenge } from "./types";
-import { havia, quantosFicaram } from "@/lib/pt";
+import { quantosFicaram } from "@/lib/pt";
 
 const PHASE = "Fase 2";
 const SECTION = "Explorando o recife";
