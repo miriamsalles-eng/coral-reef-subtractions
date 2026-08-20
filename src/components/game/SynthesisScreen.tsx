@@ -61,18 +61,20 @@ export function SynthesisScreen({ onFinish }: { onFinish: () => void }) {
 
       <StaticScene
         groups={[{ species: "fish-yellow", count: 10, leaving: 3 }]}
-        x={260}
-        y={238}
-        width={880}
-        height={54}
+        x={180}
+        y={240}
+        width={1040}
+        height={48}
+        gap={8}
       />
 
       <p
         className="absolute text-center font-display text-[24px] font-semibold text-white drop-shadow-[0_2px_3px_rgb(0_0_0_/_0.5)]"
-        style={{ left: 402, top: 322, width: 340 }}
+        style={{ left: 380, top: 312, width: 340 }}
       >
         Ficaram 7
       </p>
+
 
       <Operation a={10} b={3} result={7} x={430} y={368} width={340} />
 
