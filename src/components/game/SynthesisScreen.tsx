@@ -69,7 +69,7 @@ export function SynthesisScreen({ onFinish }: { onFinish: () => void }) {
 
       <p
         className="absolute text-center font-display text-[24px] font-semibold text-white drop-shadow-[0_2px_3px_rgb(0_0_0_/_0.5)]"
-        style={{ left: 430, top: 322, width: 340 }}
+        style={{ left: 402, top: 322, width: 340 }}
       >
         Ficaram 7
       </p>
