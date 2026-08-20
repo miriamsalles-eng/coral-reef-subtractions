@@ -1,5 +1,5 @@
 import type { Challenge } from "./types";
-import { havia, quantosFicaram } from "@/lib/pt";
+import { quantosFicaram } from "@/lib/pt";
 
 const PHASE = "Fase 2";
 const SECTION = "Explorando o recife";
@@ -26,8 +26,8 @@ export const PHASE2: Challenge[] = [
     poses: { observe: "presenting", ask: "pointing", success: "feedback" },
     compact: true,
     observe: {
-      prompt: `Observe: ${havia("seahorse", 7).toLowerCase()} aqui.`,
-      mara: "Veja quantos havia e acompanhe os que saírem.",
+      prompt: "Observe: há 7 cavalos-marinhos aqui.",
+      mara: "Acompanhe os cavalos-marinhos que vão sair.",
       button: "Ver o que acontece",
     },
     ask: {
@@ -63,7 +63,7 @@ export const PHASE2: Challenge[] = [
     poses: { observe: "presenting1", ask: "thinking", success: "feedback" },
     compact: true,
     observe: {
-      prompt: "Havia 9 estrelas-do-mar.",
+      prompt: "Observe: há 9 estrelas-do-mar.",
       mara: "Uma corrente suave vai levar algumas estrelas para longe.",
       button: "Ver o que acontece",
     },
@@ -105,7 +105,7 @@ export const PHASE2: Challenge[] = [
       layout: "mixed",
       exit: "swim",
     },
-    sceneNote: "No início: 14 animais",
+    
     compact: true,
     poses: { observe: "presenting", ask: "thinking", success: "celebrating" },
     observe: {
